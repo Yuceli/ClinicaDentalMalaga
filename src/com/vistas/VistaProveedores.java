@@ -34,6 +34,11 @@ public class VistaProveedores extends javax.swing.JFrame {
         control.cargarTabla(tabla);
         this.actualizar.setVisible(false); 
     }
+    
+    public void abrirVentana() {
+
+        setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

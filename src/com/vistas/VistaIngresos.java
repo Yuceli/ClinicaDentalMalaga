@@ -29,6 +29,11 @@ public class VistaIngresos extends javax.swing.JFrame {
         control.cargarTabla(tabla);
         this.actualizar.setVisible(false);
     }
+    
+    public void mostrarVistaIngresos() {
+
+        setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
