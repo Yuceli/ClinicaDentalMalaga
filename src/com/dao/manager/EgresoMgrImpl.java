@@ -1,6 +1,4 @@
-
-
-package com.controlador.egresos;
+package com.dao.manager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,75 +9,74 @@ import com.clinica.modelo.Egreso;
 import com.persistence.hibernate.HibernateUtil;
 import org.hibernate.HibernateException;
 
-public class EgresoMgrImpl  implements EgresoMgr{
- 
-    private EgresoDAO clienteDAO = new EgresoDAOImpl();
- 
-    public Egreso buscarClientePorNombre(String nombre) {
+public class EgresoMgrImpl implements EgresoMgr {
+
+    private EgresoDAO egresoDAO = new EgresoDAOImpl();
+
+    public Egreso buscarEgresoPorConcepto(String nombre) {
         Egreso cliente = null;
         try {
             HibernateUtil.beginTransaction();
-            cliente = clienteDAO.buscarPorNombre(nombre);
+            cliente = egresoDAO.buscarPorNombre(nombre);
             HibernateUtil.commitTransaction();
         } catch (NonUniqueResultException ex) {
-            System.out.println("Handle your error here");
-            System.out.println("Query returned more than one results.");
+            System.out.println("A ocurrido un error inesperado");
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
         return cliente;
     }
- 
-    public List<Egreso> cargarTodosLosClientes() {
+
+    public List<Egreso> cargarEgresos() {
         List<Egreso> clientes = new ArrayList<Egreso>();
         try {
             HibernateUtil.beginTransaction();
-            clientes = clienteDAO.devolverTodos(Egreso.class);
+            clientes = egresoDAO.devolverTodos(Egreso.class);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
         return clientes;
     }
- 
-    public void guardarClienteNuevo(Egreso cliente) {
+
+    public void guardarEgresoNuevo(Egreso cliente) {
         try {
             HibernateUtil.beginTransaction();
-            clienteDAO.nuevo(cliente);
+            egresoDAO.nuevo(cliente);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             ex.printStackTrace();
             HibernateUtil.rollbackTransaction();
         }
     }
- 
-    public void actualizarCliente(Egreso cliente){
+
+    public void actualizarDatosEgreso(Egreso cliente) {
         try {
             HibernateUtil.beginTransaction();
-            clienteDAO.actualizar(cliente);
+            egresoDAO.actualizar(cliente);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             ex.printStackTrace();
             HibernateUtil.rollbackTransaction();
-        }        
+        }
     }
-    
-    public Egreso buscarClientePorID(Integer id) {
+
+    public Egreso buscarEgresoPorID(Integer id) {
         Egreso cliente = null;
         try {
             HibernateUtil.beginTransaction();
-            cliente = (Egreso) clienteDAO.buscarPorID(Egreso.class, id);
+            cliente = (Egreso) egresoDAO.buscarPorID(Egreso.class, id);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
         return cliente;
     }
- 
-    public void borrarCliente(Egreso cliente) {
+
+    public void borrarEgreso(Egreso cliente) {
         try {
             HibernateUtil.beginTransaction();
-            clienteDAO.borrar(cliente);
+            egresoDAO.borrar(cliente);
             HibernateUtil.commitTransaction();
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -87,4 +84,3 @@ public class EgresoMgrImpl  implements EgresoMgr{
         }
     }
 }
-

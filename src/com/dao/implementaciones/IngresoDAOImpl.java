@@ -28,6 +28,11 @@ public class IngresoDAOImpl extends GenericDAOImpl<Ingreso, Integer> implements 
         return ingresos;
     }
 
+    
+    
+    
+    private static final String BuscarIngresoPorNombre = "SELECT c FROM Ingreso c WHERE c.nombre = :nombre";
+
     @Override
     public double obtenerIngresoDiario(Date dia) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -47,6 +52,4 @@ public class IngresoDAOImpl extends GenericDAOImpl<Ingreso, Integer> implements 
     public double obtenerIngresoAnual() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    private static final String BuscarIngresoPorNombre = "SELECT c FROM Ingreso c WHERE c.nombre = :nombre";
 }

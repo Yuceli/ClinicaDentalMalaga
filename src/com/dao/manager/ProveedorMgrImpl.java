@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.controlador.proveedores;
+package com.dao.manejador.proveedores;
 
 import com.persistence.hibernate.HibernateUtil;
 import com.dao.implementaciones.ProveedorDAOImpl;

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.controlador.proveedores;
+package com.dao.manejador.proveedores;
 
 import com.clinica.modelo.Proveedor;
 import java.util.List;

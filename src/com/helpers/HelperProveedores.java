@@ -8,7 +8,7 @@ package com.helpers;
 
 
 import com.clinica.modelo.Proveedor;
-import com.controlador.proveedores.ProveedorMgrImpl;
+import com.dao.manejador.proveedores.ProveedorMgrImpl;
 import com.vistas.VistaProveedores;
 import java.util.ArrayList;
 import java.util.Vector;

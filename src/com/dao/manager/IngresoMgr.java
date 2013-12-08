@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controlador.ingresos;
+package com.dao.manejador.ingresos;
 
 import java.util.Date;
 import java.util.List;

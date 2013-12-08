@@ -8,8 +8,8 @@ package com.vistas;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 //import Controlador.HelperIngresos;
-import com.controlador.ingresos.IngresoMgr;
-import com.controlador.ingresos.IngresoMgrImpl;
+import com.dao.manejador.ingresos.IngresoMgr;
+import com.dao.manejador.ingresos.IngresoMgrImpl;
 import com.helpers.HelperIngresos;
 
 /**

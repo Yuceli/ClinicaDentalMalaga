@@ -13,7 +13,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import com.clinica.modelo.Ingreso;
-import com.controlador.ingresos.IngresoMgrImpl;
+import com.dao.manejador.ingresos.IngresoMgrImpl;
 import com.vistas.VistaIngresos;
 
 /**
