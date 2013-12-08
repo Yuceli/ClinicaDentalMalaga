@@ -18,6 +18,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
     }
+    
+    public void mostrar() {
+
+        setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
