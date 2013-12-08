@@ -43,7 +43,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        PanelClinica.setBackground(new java.awt.Color(0, 102, 102));
+        PanelClinica.setBackground(new java.awt.Color(0, 153, 153));
         PanelClinica.setForeground(new java.awt.Color(0, 153, 255));
 
         BotonProveedores.setForeground(new java.awt.Color(51, 51, 51));
@@ -82,17 +82,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         PanelClinicaLayout.setHorizontalGroup(
             PanelClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelClinicaLayout.createSequentialGroup()
-                .addGroup(PanelClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelClinicaLayout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(LabelClinica))
-                    .addGroup(PanelClinicaLayout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(BotonProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(BotonEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(BotonIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(100, 100, 100)
+                .addComponent(BotonProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(BotonEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(BotonIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(PanelClinicaLayout.createSequentialGroup()
                 .addGap(191, 191, 191)
@@ -102,6 +97,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(233, 233, 233))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClinicaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LabelClinica)
+                .addGap(119, 119, 119))
         );
 
         PanelClinicaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BotonEgresos, BotonIngresos, BotonProveedores});
@@ -111,9 +110,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClinicaLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(LabelBienvenido)
-                .addGap(38, 38, 38)
-                .addComponent(LabelClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(LabelClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(PanelClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
