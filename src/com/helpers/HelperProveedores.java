@@ -12,9 +12,10 @@ import com.dao.manejador.proveedores.ProveedorMgrImpl;
 import com.vistas.VistaProveedores;
 import java.util.ArrayList;
 import java.util.Vector;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -53,68 +54,146 @@ public class HelperProveedores {
         return vectorTabla;
     }
     
-    public void cargarTabla(JTable tabla) {
+    public void cargarTablaProveedores(JTable tabla) {
         ArrayList<Proveedor> proveedorMgrs = (ArrayList<Proveedor>) proveedorMgr.cargarTodosLosProveedores();
         Vector v = VectorToArrayList(proveedorMgrs);
         DefaultTableModel dtm = new DefaultTableModel(v, nombresCol);
         tabla.setModel(dtm);
         
     }
-        
-        public void actualizar(int id, String txt_nombre, String txt_direccion, String txt_telefono, String txt_rfc) {
-        Proveedor proveedor = new Proveedor(txt_nombre, txt_direccion, txt_telefono, txt_rfc);
-        proveedor.setId(id);
-        this.proveedorMgr.actualizarProveedor(proveedor);
-
+    
+    public boolean camposSobrepasados(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono) {
+        String nombre = txtNombre.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        if (nombre.length() > 100 || direccion.length() > 100 || telefono.length() > 100) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void borrar(int id, String nombre, String direccion, String telefono,  String rfc) {
-        Proveedor proveedor = new Proveedor(nombre, direccion, telefono, rfc);
-        proveedor.setId(id);
-        this.proveedorMgr.borrarProveedor(proveedor);
+    public boolean camposVacios(JTextField txtNombre, JTextField txtDireccion) {
+        String nombre = txtNombre.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+        if (nombre.equals("") || direccion.equals("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    
-    public void añadirProveedor(JTextField name, JTextField address, JTextField telephone, JTextField rfc){
-        String nombre = name.getText();
-        String direccion = address.getText();
-        String telefono = telephone.getText();
-        String Rfc = rfc.getText();
-        Proveedor proveedor = new Proveedor(nombre, direccion, telefono, Rfc);
-        this.proveedorMgr.guardarProveedorNuevo(proveedor);
+
+    public boolean telefonoEsNumerico(JTextField txtTelefono) {
+        String telefono = txtTelefono.getText().trim();
+        try {
+            Integer.parseInt(telefono);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
-    
-    public void borrarCliente(JTextField idField, JTextField nombreField, JTextField direccionField, JTextField celField, JTextField rfc){
-        String nombre = nombreField.getText();
-        String direccion  = direccionField.getText();
-        String telefono = celField.getText();
-        String Rfc = rfc.getText();
-        int id = Integer.parseInt(idField.getText());
-        Proveedor proveedor = new Proveedor(nombre, direccion, telefono, Rfc);
-        proveedor.setId(id);
-        this.proveedorMgr.borrarProveedor(proveedor);
+
+    public void bloquearBotones(JButton btnModificar, JButton btnBorrar) {
+        btnModificar.setEnabled(false);
+        btnBorrar.setEnabled(false);
     }
-    
-    public void buscarDatosPorId(Integer ID, JTextField id, JTextField nombre, JTextField direccion, JTextField telefono, JTextField Rfc){
-        Proveedor proveedor = proveedorMgr.buscarProveedorPorID(ID);
-        id.setText(String.valueOf(proveedor.getId()));
-        nombre.setText(proveedor.getNombre());
-        direccion.setText(proveedor.getDireccion());
-        telefono.setText(proveedor.getTelefono());
-        Rfc.setText(proveedor.getRfc());
+
+    public void desbloquearBotones(JButton btnModificar, JButton btnBorrar) {
+        btnModificar.setEnabled(true);
+        btnBorrar.setEnabled(true);
     }
-    
-    public void buscarDatosPorNombre(String name, JTextField id, JTextField nombre, JTextField direccion, JTextField telefono, JTextField Rfc){
-        Proveedor proveedor = proveedorMgr.buscarProveedorPorNombre(name);
-        id.setText(String.valueOf(proveedor.getId()));
-        nombre.setText(proveedor.getNombre());
-        direccion.setText(proveedor.getDireccion());
-        telefono.setText(proveedor.getTelefono());
-        Rfc.setText(proveedor.getRfc());
+
+    public void bloquearCamposTexto(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
+        txtNombre.setEnabled(false);
+        txtDireccion.setEnabled(false);
+        txtTelefono.setEnabled(false);
+        txtRFC.setEnabled(false);
+    }
+
+    public void desbloquearCamposTexto(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
+        txtNombre.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtRFC.setEnabled(true);
+    }
+
+    public void limpiarCamposTexto(JTextField txtID, JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
+        txtID.setText("");
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txtRFC.setText("");
+    }
+    ArrayList arregloProveedor = new ArrayList();
+
+    public ArrayList obtenerDatosFilaSeleccionada(JTable tablaProveedores) {
+        int columnaID = 0;
+        int columnaNombre = 1;
+        int columnaDireccion = 2;
+        int columnaTelefono = 3;
+        int columnaRFC = 4;
+        arregloProveedor.clear();
+        int filaSeleccionada = tablaProveedores.getSelectedRow();
+        Object id = (Object) tablaProveedores.getValueAt(filaSeleccionada, columnaID);
+        String nombre = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaNombre);
+        String direccion = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaDireccion);
+        String telefono = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaTelefono);
+        String rfc = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaRFC);
+        arregloProveedor.add(id);
+        arregloProveedor.add(nombre);
+        arregloProveedor.add(direccion);
+        arregloProveedor.add(telefono);
+        arregloProveedor.add(rfc);
+        return arregloProveedor;
+    }
+
+    public void ponerDatosSeleccionados(JTextField txtID, JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
+        ArrayList arregloDatosProveedor = (ArrayList) arregloProveedor.clone();
+        Object id = arregloDatosProveedor.get(0);
+        String nombre = (String) arregloDatosProveedor.get(1);
+        String direccion = (String) arregloDatosProveedor.get(2);
+        String telefono = (String) arregloDatosProveedor.get(3);
+        String rfc = (String) arregloDatosProveedor.get(4);
+        txtNombre.setText(nombre);
+        txtDireccion.setText(direccion);
+        txtTelefono.setText(telefono);
+        txtID.setText(String.valueOf(id));
+        txtRFC.setText(rfc);
+    }  
+
+     public void buscarProveedor(ButtonGroup grupo,JRadioButton opcionID, JRadioButton opcionNombre, JTextField txtBusqueda, JTable tablaProveedores) {
+        RowFilter<TableModel, Object> rowFilter = null;
+        int columnaBuscar = 2;
         
+        if(opcionID.isSelected()){
+            columnaBuscar=0;
+        }else if(opcionNombre.isSelected()){
+            columnaBuscar=1;
+        }else{
+            columnaBuscar=2;
+        }
+        
+        try {
+            String textoABuscar = txtBusqueda.getText();
+            if (textoABuscar.isEmpty()) {
+                rowFilter = RowFilter.regexFilter(textoABuscar, columnaBuscar);
+            } else {
+                String nombre = txtBusqueda.getText().trim();
+                nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
+                rowFilter = RowFilter.regexFilter(nombre, columnaBuscar);
+            }
+        } catch (java.util.regex.PatternSyntaxException e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar en la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        TableRowSorter sorter = new TableRowSorter<TableModel>(tablaProveedores.getModel());
+        tablaProveedores.setRowSorter(sorter);
+        tablaProveedores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        sorter.setRowFilter(rowFilter);
+        
+        
+
     }
-    
-    
-    
+     
        
         
 }
