@@ -44,7 +44,6 @@ public class HelperEgresos {
             v.add(c.getConcepto());
             v.add(c.getTipoEgreso());
             v.add(c.getProveedor());
-
             vectorTabla.add(v);
         }
         return vectorTabla;
