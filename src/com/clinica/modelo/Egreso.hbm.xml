@@ -1,20 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 7/12/2013 11:46:38 AM by Hibernate Tools 3.6.0 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/12/2013 08:41:53 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-  <class name="com.clinica.modelo.Egreso" table="egreso">
-    <id name="id" type="int">
-      <column name="ID"/>
-      <generator class="native"/>
-    </id>
-    <property name="concepto" type="java.lang.String">
-      <column name="concepto"/>
-    </property>
-    <property name="tipoEgreso" type="java.lang.String">
-      <column name="tipoEgreso"/>
-    </property>
-    <property name="proveedor" type="java.lang.String">
-      <column name="proveedor"/>
-    </property>
-  </class>
+    <class name="com.clinica.modelo.Egreso" table="egreso" catalog="clinicadental">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity" />
+        </id>
+        <property name="concepto" type="string">
+            <column name="Concepto" length="100" />
+        </property>
+        <property name="tipoEgreso" type="string">
+            <column name="TipoEgreso" length="100" />
+        </property>
+        <property name="proveedor" type="string">
+            <column name="Proveedor" length="100" />
+        </property>
+        <property name="monto" type="java.lang.Double">
+            <column name="Monto" precision="22" scale="0" />
+        </property>
+    </class>
 </hibernate-mapping>

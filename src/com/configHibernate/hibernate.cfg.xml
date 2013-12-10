@@ -8,7 +8,7 @@
     <property name="hibernate.connection.username">root</property>
     <property name="current_session_context_class">thread</property>
     <mapping resource="com/clinica/modelo/Ingreso.hbm.xml"/>
-    <mapping class="" file="" jar="" package="" resource="com/clinica/modelo/Egreso.hbm.xml"/>
     <mapping resource="com/clinica/modelo/Proveedor.hbm.xml"/>
+    <mapping resource="com/clinica/modelo/Egreso.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

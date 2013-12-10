@@ -72,7 +72,7 @@ public class VistaIngresos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        datos.setBackground(new java.awt.Color(0, 153, 153));
+        datos.setBackground(new java.awt.Color(153, 153, 153));
         datos.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
         jLabel2.setText("Concepto : ");
@@ -159,7 +159,7 @@ public class VistaIngresos extends javax.swing.JFrame {
 
         datosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {actualizar, añadir});
 
-        jTabla.setBackground(new java.awt.Color(0, 153, 153));
+        jTabla.setBackground(new java.awt.Color(153, 153, 153));
         jTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -191,7 +191,7 @@ public class VistaIngresos extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        opciones.setBackground(new java.awt.Color(0, 153, 153));
+        opciones.setBackground(new java.awt.Color(153, 153, 153));
         opciones.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Busqueda"));
 
         jLabel5.setText("Buscar por: ");
@@ -243,7 +243,7 @@ public class VistaIngresos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        opTabla.setBackground(new java.awt.Color(0, 153, 153));
+        opTabla.setBackground(new java.awt.Color(153, 153, 153));
         opTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Tabla"));
 
         editar.setText("Editar Registro");

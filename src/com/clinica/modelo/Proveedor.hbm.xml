@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 7/12/2013 11:46:38 AM by Hibernate Tools 3.6.0 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/12/2013 08:31:05 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
-  <class catalog="clinicadental" name="com.clinica.modelo.Proveedor" table="proveedores">
-    <id name="id" type="java.lang.Integer">
-      <column name="Id"/>
-      <generator class="identity"/>
-    </id>
-    <property name="nombre" type="string">
-      <column length="100" name="Nombre"/>
-    </property>
-    <property name="direccion" type="string">
-      <column length="100" name="Direccion"/>
-    </property>
-    <property name="telefono" type="string">
-      <column length="100" name="Telefono"/>
-    </property>
-    <property name="rfc" type="string">
-      <column length="100" name="Rfc"/>
-    </property>
-  </class>
+    <class name="com.clinica.modelo.Proveedor" table="proveedores" catalog="clinicadental">
+        <id name="id" type="java.lang.Integer">
+            <column name="Id" />
+            <generator class="identity"></generator>
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="100" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="100" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="Telefono" length="100" />
+        </property>
+        <property name="rfc" type="string">
+            <column name="Rfc" length="100" />
+        </property>
+    </class>
 </hibernate-mapping>

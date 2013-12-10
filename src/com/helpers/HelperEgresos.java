@@ -13,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
 import com.clinica.modelo.Egreso;
 import com.dao.manager.EgresoMgrImpl;
 import com.vistas.VistaEgresos;
+import java.util.Date;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -28,9 +30,10 @@ public class HelperEgresos {
         egresos = new EgresoMgrImpl();
         nombresColumnas = new Vector();
         nombresColumnas.add("ID");
-        nombresColumnas.add("Nombre");
-        nombresColumnas.add("Direccion");
-        nombresColumnas.add("Correo");
+        nombresColumnas.add("Concepto");
+        nombresColumnas.add("Tipo de egreso");
+        nombresColumnas.add("Proveedor");
+        nombresColumnas.add("Monto");
 
     }
 
@@ -44,6 +47,8 @@ public class HelperEgresos {
             v.add(c.getConcepto());
             v.add(c.getTipoEgreso());
             v.add(c.getProveedor());
+            v.add(c.getMonto());
+//            v.add(c.getFecha());
             vectorTabla.add(v);
         }
         return vectorTabla;
@@ -57,33 +62,48 @@ public class HelperEgresos {
         tabla.setModel(dtm);
     }
 
-    public void actualizar(int id, String txt_nombre, String txt_direccion, String txt_correo) {
-        Egreso cliente = new Egreso(txt_nombre, txt_direccion, txt_correo);
-        cliente.setId(id);
-        this.egresos.actualizarDatosEgreso(cliente);
-
+    public void actualizar(int id, JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField , JTextField montoField) {
+       String concepto = conceptoField.getText();
+       String tipoEgreso = tipoEgresoField.getText();
+       String proveedor = proveedorField.getText();
+       Double monto = Double.parseDouble(montoField.getText());
+       Egreso egreso = new Egreso(concepto, tipoEgreso, proveedor, monto);
+       egreso.setId(id);
+       this.egresos.actualizarDatosEgreso(egreso);
+    }
+    
+    public void editarEgresos(JTable tabla, int row, JTextField concepto, JTextField tipoEgreso, JTextField proveedor, JTextField monto){
+        Egreso egreso = parseEgreso(tabla, row);
+//      id.setText(String.valueOf(egreso.getId()));
+        concepto.setText(egreso.getConcepto());
+        tipoEgreso.setText(egreso.getTipoEgreso());
+        proveedor.setText(egreso.getProveedor());
+        monto.setText(Double.toString(egreso.getMonto()));
+        
     }
 
-    public void borrar(int id, String nombre, String direccion, String correo) {
-        Egreso cliente = new Egreso(nombre, direccion, correo);
+    public void borrar(int id, String nombre, String direccion, String correo, Double monto) {
+        Egreso cliente = new Egreso(nombre, direccion, correo, monto);
         cliente.setId(id);
         this.egresos.borrarEgreso(cliente);
     }
     
-    public void añadirCliente(JTextField name, JTextField address, JTextField email){
+    public void añadirCliente(JTextField name, JTextField address, JTextField email, JTextField montoField){
         String nombre = name.getText();
         String direccion = address.getText();
         String correo = email.getText();
-        Egreso cliente = new Egreso(nombre, direccion, correo);
+        Double monto = Double.parseDouble(montoField.getText());
+        Egreso cliente = new Egreso(nombre, direccion, correo, monto);
         this.egresos.guardarEgresoNuevo(cliente);
     }
     
-    public void borrarCliente(JTextField idField, JTextField nombreField, JTextField direccionField, JTextField correoField){
+    public void borrarCliente(JTextField idField, JTextField nombreField, JTextField direccionField, JTextField correoField, JTextField montoField){
         String nombre = nombreField.getText();
         String direccion  = direccionField.getText();
         String correo = correoField.getText();
         int id = Integer.parseInt(idField.getText());
-        Egreso cliente = new Egreso(nombre, direccion, correo);
+        Double monto = Double.parseDouble(montoField.getText());
+        Egreso cliente = new Egreso(nombre, direccion, correo, monto);
         cliente.setId(id);
         this.egresos.borrarEgreso(cliente);
     }
@@ -103,6 +123,19 @@ public class HelperEgresos {
         nombre.setText(cliente.getConcepto());
         direccion.setText(cliente.getTipoEgreso());
         correo.setText(cliente.getProveedor());
+    }
+
+    private Egreso parseEgreso(JTable tabla, int row) {
+        TableModel tableModel = tabla.getModel();
+        Egreso egreso =  new Egreso();
+        int idEgreso = (Integer)tableModel.getValueAt(row, 0);
+//      egreso.setId(idEgreso);
+        egreso.setConcepto((String) tableModel.getValueAt(row, 1));
+        egreso.setTipoEgreso((String) tableModel.getValueAt(row, 2));
+        egreso.setProveedor((String) tableModel.getValueAt(row, 3));
+        egreso.setMonto(((Double)tableModel.getValueAt(row, 4)));
+        
+        return egreso;
     }
     
     

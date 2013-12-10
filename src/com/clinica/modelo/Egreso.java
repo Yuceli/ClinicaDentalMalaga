@@ -12,11 +12,15 @@ public class Egreso implements java.io.Serializable {
     public Egreso() {
     }
 
-    public Egreso(String concepto, String tipoEgreso, String proveedor) {
+    public Egreso(String concepto, String tipoEgreso, String proveedor, double monto) {
         this.concepto = concepto;
         this.tipoEgreso = tipoEgreso;
         this.proveedor = proveedor;
+        this.monto = monto;
+//        this.fecha = fecha;
     }
+
+    
 
     public int getId() {
         return this.id;

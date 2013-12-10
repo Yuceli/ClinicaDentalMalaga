@@ -25,7 +25,7 @@ public class VistaEgresos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.control = new HelperEgresos();
-        control.cargarTabla(tabla);
+        control.cargarTabla(tablaEgresos);
         this.actualizar.setVisible(false); 
     }
     
@@ -54,20 +54,19 @@ public class VistaEgresos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
-        txtCorreo = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
+        tipoEgresoField = new javax.swing.JTextField();
+        proveedorField = new javax.swing.JTextField();
+        conceptoField = new javax.swing.JTextField();
         añadir = new javax.swing.JButton();
         actualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        montoField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        fechaField = new javax.swing.JTextField();
         jTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        tablaEgresos = new javax.swing.JTable();
         opTabla = new javax.swing.JPanel();
-        editar = new javax.swing.JButton();
         borrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -172,11 +171,11 @@ public class VistaEgresos extends javax.swing.JFrame {
                     .addGroup(datosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
+                        .addComponent(conceptoField, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
                     .addGroup(datosLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDireccion))
+                        .addComponent(tipoEgresoField))
                     .addGroup(datosLayout.createSequentialGroup()
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -184,9 +183,9 @@ public class VistaEgresos extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCorreo)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2))))
+                            .addComponent(proveedorField)
+                            .addComponent(montoField)
+                            .addComponent(fechaField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -200,23 +199,23 @@ public class VistaEgresos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(conceptoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoEgresoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(11, 11, 11)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(proveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(montoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(21, 21, 21)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fechaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(actualizar)
@@ -224,7 +223,7 @@ public class VistaEgresos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        datosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCorreo, txtDireccion, txtNombre});
+        datosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {conceptoField, proveedorField, tipoEgresoField});
 
         datosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4});
 
@@ -233,18 +232,23 @@ public class VistaEgresos extends javax.swing.JFrame {
         jTabla.setBackground(new java.awt.Color(0, 153, 153));
         jTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de Egresos"));
 
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEgresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Id", "Nombre", "Direccion", "Correo"
+                "Id", "Concepto", "Tipo de egreso", "Proveedores", "Monto"
             }
         ));
-        jScrollPane1.setViewportView(tabla);
+        tablaEgresos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEgresosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaEgresos);
 
         javax.swing.GroupLayout jTablaLayout = new javax.swing.GroupLayout(jTabla);
         jTabla.setLayout(jTablaLayout);
@@ -265,13 +269,6 @@ public class VistaEgresos extends javax.swing.JFrame {
         opTabla.setBackground(new java.awt.Color(0, 153, 153));
         opTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Tabla"));
 
-        editar.setText("Editar Registro");
-        editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarActionPerformed(evt);
-            }
-        });
-
         borrar.setText("Borrar Registro");
         borrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,26 +281,17 @@ public class VistaEgresos extends javax.swing.JFrame {
         opTablaLayout.setHorizontalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opTablaLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(borrar)
-                    .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addComponent(borrar)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
-
-        opTablaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {borrar, editar});
-
         opTablaLayout.setVerticalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opTablaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(editar)
-                .addGap(18, 18, 18)
+            .addGroup(opTablaLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addComponent(borrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        opTablaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {borrar, editar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -338,56 +326,40 @@ public class VistaEgresos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-
-        if (this.tabla.getSelectedRowCount() != 1) {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
-        } else {
-            filaSeleccionada = this.tabla.getSelectedRow();
-            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-            this.txtNombre.setText((String) modelo.getValueAt(filaSeleccionada, 1));
-            this.txtDireccion.setText((String) modelo.getValueAt(filaSeleccionada, 2));
-            this.txtCorreo.setText((String) modelo.getValueAt(filaSeleccionada, 3));
-            this.añadir.setVisible(false); //guardar
-            this.actualizar.setVisible(true); //actualizar
-        }
-
-    }//GEN-LAST:event_editarActionPerformed
-
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
  
-            control.añadirCliente(txtNombre, txtDireccion, txtCorreo);
-            control.cargarTabla(tabla);
-            setText();
+            control.añadirCliente(conceptoField, tipoEgresoField, proveedorField, montoField);
+            control.cargarTabla(tablaEgresos);
+            limpiarCampos();
         
             
     }//GEN-LAST:event_añadirActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         // TODO add your handling code here:
-        if (this.tabla.getSelectedRowCount() != 1) {
+        if (this.tablaEgresos.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(rootPane, "Seleccione una fila de la tabla");
 
         } else {
-            filaSeleccionada = this.tabla.getSelectedRow();
-            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            filaSeleccionada = this.tablaEgresos.getSelectedRow();
+            DefaultTableModel modelo = (DefaultTableModel) tablaEgresos.getModel();
             String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
             String direccion = (String) modelo.getValueAt(filaSeleccionada, 2);
             String correo = (String) modelo.getValueAt(filaSeleccionada, 3);
             int id = (Integer) modelo.getValueAt(filaSeleccionada, 0);
-            control.borrar(id, nombre, direccion, correo);
-            control.cargarTabla(tabla);
+            control.borrar(id, nombre, direccion, correo, Double.NaN);
+            control.cargarTabla(tablaEgresos);
         }
     }//GEN-LAST:event_borrarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
         // TODO add your handling code here:
-            int id = (Integer) this.tabla.getModel().getValueAt(filaSeleccionada, 0);
-            control.actualizar(id, txtNombre.getText(), txtDireccion.getText(), txtCorreo.getText());
-            control.cargarTabla(tabla);
+            int id = (Integer) this.tablaEgresos.getModel().getValueAt(filaSeleccionada, 0);
+            control.actualizar(id, conceptoField, tipoEgresoField, proveedorField, montoField);
+            control.cargarTabla(tablaEgresos);
             this.añadir.setVisible(true); 
             this.actualizar.setVisible(false);
-            setText();
+            limpiarCampos();
         
 
     }//GEN-LAST:event_actualizarActionPerformed
@@ -396,34 +368,29 @@ public class VistaEgresos extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jConcepto.isSelected()) {
             String busqueda = txtBusqueda.getText();
-            control.buscarDatosPorNombre(busqueda, txtCorreo, txtNombre, txtDireccion, txtCorreo);
+            control.buscarDatosPorNombre(busqueda, proveedorField, conceptoField, tipoEgresoField, proveedorField);
         }
         if (jId.isSelected()) {
             String busqueda = txtBusqueda.getText();
             try {
                 Integer ID = Integer.parseInt(busqueda);
-                control.buscarDatosPorId(ID, txtCorreo, txtNombre, txtDireccion, txtCorreo);
+                control.buscarDatosPorId(ID, proveedorField, conceptoField, tipoEgresoField, proveedorField);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "El ID ingresado no es encuentra en la lista de clientes");
             }
         }
     }//GEN-LAST:event_buscarActionPerformed
 
-    public void setText() {
-        txtNombre.setText("");
-        txtDireccion.setText("");
-        txtCorreo.setText("");
-    }
+    private void tablaEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEgresosMouseClicked
+        control.editarEgresos(tablaEgresos, tablaEgresos.getSelectedRow(), conceptoField, tipoEgresoField, proveedorField, montoField);
+    }//GEN-LAST:event_tablaEgresosMouseClicked
 
-    public boolean isEmptyFields() {
-        if (txtNombre.equals("") || txtDireccion.equals("")) {
-            return false;
-        } else {
-            return true;
-        }
+    public void limpiarCampos() {
+        conceptoField.setText("");
+        tipoEgresoField.setText("");
+        proveedorField.setText("");
+        montoField.setText("");
     }
-
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -431,8 +398,9 @@ public class VistaEgresos extends javax.swing.JFrame {
     private javax.swing.JButton añadir;
     private javax.swing.JButton borrar;
     private javax.swing.JButton buscar;
+    private javax.swing.JTextField conceptoField;
     private javax.swing.JPanel datos;
-    private javax.swing.JButton editar;
+    private javax.swing.JTextField fechaField;
     private javax.swing.JRadioButton jConcepto;
     private javax.swing.JRadioButton jId;
     private javax.swing.JLabel jLabel1;
@@ -443,15 +411,13 @@ public class VistaEgresos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jTabla;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField montoField;
     private javax.swing.ButtonGroup opBusqueda;
     private javax.swing.JPanel opTabla;
     private javax.swing.JPanel opciones;
-    private javax.swing.JTable tabla;
+    private javax.swing.JTextField proveedorField;
+    private javax.swing.JTable tablaEgresos;
+    private javax.swing.JTextField tipoEgresoField;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
