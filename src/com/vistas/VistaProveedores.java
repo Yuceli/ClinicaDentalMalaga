@@ -470,7 +470,7 @@ public class VistaProveedores extends javax.swing.JFrame {
 
     private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
         // TODO add your handling code here:
-        helper.desbloquearBotones(btnModificar, btnBorrar);
+         helper.desbloquearBotones(btnModificar, btnBorrar);
         helper.obtenerDatosFilaSeleccionada(tablaProveedores);
         helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
     }//GEN-LAST:event_tablaProveedoresMouseClicked
