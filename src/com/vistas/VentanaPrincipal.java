@@ -21,6 +21,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
 
     }
 
@@ -148,7 +149,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         VistaProveedores vistaProveedores = new VistaProveedores();
         vistaProveedores.abrirVentana();
-        VentanaPrincipal screen = new VentanaPrincipal();
+        setVisible(false);
         
 
     }//GEN-LAST:event_BotonProveedoresActionPerformed
@@ -157,12 +158,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         VistaEgresos vistaEgresos = new VistaEgresos();
         vistaEgresos.abrirVentana();
+        setVisible(false);
     }//GEN-LAST:event_BotonEgresosActionPerformed
 
     private void BotonIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresosActionPerformed
         // TODO add your handling code here:
         VistaIngresos vistaIngresos = new VistaIngresos();
         vistaIngresos.mostrarVistaIngresos();
+        setVisible(false);
     }//GEN-LAST:event_BotonIngresosActionPerformed
 
     
