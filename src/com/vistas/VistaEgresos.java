@@ -4,7 +4,6 @@
  */
 package com.vistas;
 
-
 import com.dao.manager.EgresoMgr;
 import com.dao.manager.EgresoMgrImpl;
 import javax.swing.JOptionPane;
@@ -26,9 +25,9 @@ public class VistaEgresos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.control = new HelperEgresos();
         control.cargarTabla(tablaEgresos);
-        this.actualizar.setVisible(false); 
+        this.actualizar.setVisible(false);
     }
-    
+
     public void abrirVentana() {
 
         setVisible(true);
@@ -123,9 +122,9 @@ public class VistaEgresos extends javax.swing.JFrame {
                 .addComponent(jId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jConcepto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(buscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         datos.setBackground(new java.awt.Color(0, 153, 153));
@@ -159,23 +158,13 @@ public class VistaEgresos extends javax.swing.JFrame {
         datos.setLayout(datosLayout);
         datosLayout.setHorizontalGroup(
             datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosLayout.createSequentialGroup()
-                .addContainerGap(461, Short.MAX_VALUE)
-                .addComponent(añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(actualizar)
-                .addGap(19, 19, 19))
             .addGroup(datosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(datosLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(conceptoField, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
+                .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tipoEgresoField))
+                        .addComponent(tipoEgresoField, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(datosLayout.createSequentialGroup()
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -183,10 +172,20 @@ public class VistaEgresos extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(proveedorField)
-                            .addComponent(montoField)
-                            .addComponent(fechaField))))
+                            .addComponent(fechaField, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(montoField, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(proveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(datosLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(conceptoField, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(añadir, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(actualizar)
+                .addGap(22, 22, 22))
         );
 
         datosLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4});
@@ -204,23 +203,23 @@ public class VistaEgresos extends javax.swing.JFrame {
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipoEgresoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(proveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(proveedorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(montoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(21, 21, 21)
+                    .addComponent(jLabel1)
+                    .addComponent(montoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(fechaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(actualizar)
-                    .addComponent(añadir))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(añadir)
+                    .addComponent(actualizar))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         datosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {conceptoField, proveedorField, tipoEgresoField});
@@ -256,7 +255,7 @@ public class VistaEgresos extends javax.swing.JFrame {
             jTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jTablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 896, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jTablaLayout.setVerticalGroup(
@@ -281,14 +280,14 @@ public class VistaEgresos extends javax.swing.JFrame {
         opTablaLayout.setHorizontalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opTablaLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(20, 20, 20)
                 .addComponent(borrar)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         opTablaLayout.setVerticalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opTablaLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(19, 19, 19)
                 .addComponent(borrar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -313,26 +312,27 @@ public class VistaEgresos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(opTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
- 
-            control.añadirCliente(conceptoField, tipoEgresoField, proveedorField, montoField);
-            control.cargarTabla(tablaEgresos);
-            limpiarCampos();
-        
-            
+
+        control.añadirCliente(conceptoField, tipoEgresoField, proveedorField, montoField);
+        control.cargarTabla(tablaEgresos);
+        limpiarCampos();
+
+
     }//GEN-LAST:event_añadirActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
@@ -353,14 +353,14 @@ public class VistaEgresos extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-        // TODO add your handling code here:
-            int id = (Integer) this.tablaEgresos.getModel().getValueAt(filaSeleccionada, 0);
-            control.actualizar(id, conceptoField, tipoEgresoField, proveedorField, montoField);
-            control.cargarTabla(tablaEgresos);
-            this.añadir.setVisible(true); 
-            this.actualizar.setVisible(false);
-            limpiarCampos();
-        
+       
+        int id = (Integer) this.tablaEgresos.getModel().getValueAt(filaSeleccionada, 0);
+        control.actualizar(id,conceptoField, tipoEgresoField, proveedorField, montoField);
+        control.cargarTabla(tablaEgresos);
+        this.añadir.setVisible(true);
+        this.actualizar.setVisible(false);
+        limpiarCampos();
+
 
     }//GEN-LAST:event_actualizarActionPerformed
 
@@ -382,7 +382,13 @@ public class VistaEgresos extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarActionPerformed
 
     private void tablaEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEgresosMouseClicked
+        
         control.editarEgresos(tablaEgresos, tablaEgresos.getSelectedRow(), conceptoField, tipoEgresoField, proveedorField, montoField);
+        this.actualizar.setVisible(true);
+        this.añadir.setVisible(false);
+        
+
+
     }//GEN-LAST:event_tablaEgresosMouseClicked
 
     public void limpiarCampos() {
@@ -390,6 +396,38 @@ public class VistaEgresos extends javax.swing.JFrame {
         tipoEgresoField.setText("");
         proveedorField.setText("");
         montoField.setText("");
+    }
+    
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(VistaEgresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(VistaEgresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(VistaEgresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(VistaEgresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VistaEgresos().setVisible(true);
+            }
+        });
     }
 
 

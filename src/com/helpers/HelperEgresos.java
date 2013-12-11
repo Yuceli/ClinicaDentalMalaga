@@ -18,7 +18,7 @@ import javax.swing.table.TableModel;
 
 /**
  *
- * @author Yuceli
+ * @author Yucegresoli
  */
 public class HelperEgresos {
 
@@ -54,6 +54,10 @@ public class HelperEgresos {
         return vectorTabla;
 
     }
+    
+    public void recargarTabla(JTable tablaEgresos){
+        this.cargarTabla(tablaEgresos); 
+    }
 
     public void cargarTabla(JTable tabla) {
         ArrayList<Egreso> egreso = (ArrayList<Egreso>) egresos.cargarEgresos();
@@ -63,11 +67,16 @@ public class HelperEgresos {
     }
 
     public void actualizar(int id, JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField , JTextField montoField) {
+       
        String concepto = conceptoField.getText();
        String tipoEgreso = tipoEgresoField.getText();
        String proveedor = proveedorField.getText();
        Double monto = Double.parseDouble(montoField.getText());
-       Egreso egreso = new Egreso(concepto, tipoEgreso, proveedor, monto);
+//       egreso.setConcepto(concepto);
+//       egreso.setTipoEgreso(tipoEgreso);
+//       egreso.setProveedor(proveedor);
+//       egreso.setMonto(monto);
+       Egreso egreso = new Egreso(concepto,tipoEgreso,proveedor,monto);
        egreso.setId(id);
        this.egresos.actualizarDatosEgreso(egreso);
     }
