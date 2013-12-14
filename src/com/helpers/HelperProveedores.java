@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.helpers;
-
 
 import com.clinica.modelo.Proveedor;
 import com.dao.manejador.proveedores.ProveedorMgrImpl;
@@ -24,10 +22,11 @@ import javax.swing.table.TableRowSorter;
  * @author Yuceli
  */
 public class HelperProveedores {
+
     private ProveedorMgrImpl proveedorMgr;
     private VistaProveedores ventana;
     Vector nombresCol;
-    
+
     public HelperProveedores() {
         proveedorMgr = new ProveedorMgrImpl();
         nombresCol = new Vector();
@@ -38,7 +37,7 @@ public class HelperProveedores {
         nombresCol.add("RFC");
 
     }
-    
+
     private Vector VectorToArrayList(ArrayList<Proveedor> a) {
         Vector vectorTabla = new Vector();
 
@@ -55,15 +54,15 @@ public class HelperProveedores {
         }
         return vectorTabla;
     }
-    
+
     public void cargarTablaProveedores(JTable tabla) {
         ArrayList<Proveedor> proveedorMgrs = (ArrayList<Proveedor>) proveedorMgr.cargarTodosLosProveedores();
         Vector v = VectorToArrayList(proveedorMgrs);
         DefaultTableModel dtm = new DefaultTableModel(v, nombresCol);
         tabla.setModel(dtm);
-        
+
     }
-    
+
     public boolean camposSobrepasados(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono) {
         String nombre = txtNombre.getText().trim();
         String direccion = txtDireccion.getText().trim();
@@ -161,20 +160,20 @@ public class HelperProveedores {
         txtTelefono.setText(telefono);
         txtID.setText(String.valueOf(id));
         txtRFC.setText(rfc);
-    }  
+    }
 
-     public void buscarProveedor(ButtonGroup grupo,JRadioButton opcionID, JRadioButton opcionNombre, JTextField txtBusqueda, JTable tablaProveedores) {
+    public void buscarProveedor(ButtonGroup grupo, JRadioButton opcionID, JRadioButton opcionNombre, JTextField txtBusqueda, JTable tablaProveedores) {
         RowFilter<TableModel, Object> rowFilter = null;
         int columnaBuscar = 2;
-        
-        if(opcionID.isSelected()){
-            columnaBuscar=0;
-        }else if(opcionNombre.isSelected()){
-            columnaBuscar=1;
-        }else{
-            columnaBuscar=2;
+
+        if (opcionID.isSelected()) {
+            columnaBuscar = 0;
+        } else if (opcionNombre.isSelected()) {
+            columnaBuscar = 1;
+        } else {
+            columnaBuscar = 2;
         }
-        
+
         try {
             String textoABuscar = txtBusqueda.getText();
             if (textoABuscar.isEmpty()) {
@@ -193,14 +192,14 @@ public class HelperProveedores {
         sorter.setRowFilter(rowFilter);
 
     }
-     
-              public void cargarTablaProveedores1(JTable tablaProveedores) {
+
+    public void cargarTablaProveedores1(JTable tablaProveedores) {
         try {
             final DefaultTableModel modelosTabla = (DefaultTableModel) tablaProveedores.getModel();
             modelosTabla.setRowCount(0);
             List proveedores = proveedorMgr.cargarTodosLosProveedores();
             Object datosProveedor[] = new Object[5];//ARRAY DE 4
-     
+
             Iterator<Proveedor> iterador = proveedores.iterator();
             while (iterador.hasNext()) {
                 Proveedor proveedor = (Proveedor) iterador.next();
@@ -211,11 +210,10 @@ public class HelperProveedores {
                 datosProveedor[4] = proveedor.getRfc();
                 modelosTabla.addRow(datosProveedor);
             }
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al cargar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-       
-        
+
 }
