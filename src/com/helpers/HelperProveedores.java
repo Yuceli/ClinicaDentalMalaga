@@ -11,6 +11,8 @@ import com.clinica.modelo.Proveedor;
 import com.dao.manejador.proveedores.ProveedorMgrImpl;
 import com.vistas.VistaProveedores;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -189,11 +191,31 @@ public class HelperProveedores {
         tablaProveedores.setRowSorter(sorter);
         tablaProveedores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         sorter.setRowFilter(rowFilter);
-        
-        
 
     }
      
+              public void cargarTablaProveedores1(JTable tablaProveedores) {
+        try {
+            final DefaultTableModel modelosTabla = (DefaultTableModel) tablaProveedores.getModel();
+            modelosTabla.setRowCount(0);
+            List proveedores = proveedorMgr.cargarTodosLosProveedores();
+            Object datosProveedor[] = new Object[5];//ARRAY DE 4
+     
+            Iterator<Proveedor> iterador = proveedores.iterator();
+            while (iterador.hasNext()) {
+                Proveedor proveedor = (Proveedor) iterador.next();
+                datosProveedor[0] = proveedor.getId();
+                datosProveedor[1] = proveedor.getNombre();
+                datosProveedor[2] = proveedor.getDireccion();
+                datosProveedor[3] = proveedor.getTelefono();
+                datosProveedor[4] = proveedor.getRfc();
+                modelosTabla.addRow(datosProveedor);
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
        
         
 }
