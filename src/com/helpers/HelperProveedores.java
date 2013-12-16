@@ -6,12 +6,12 @@
 package com.helpers;
 
 import com.clinica.modelo.Proveedor;
-import com.dao.manejador.proveedores.ProveedorMgrImpl;
-import com.vistas.VistaProveedores;
+import com.dao.manager.ControladorProveedores;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -19,48 +19,17 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author Yuceli
+ * @author
  */
 public class HelperProveedores {
 
-    private ProveedorMgrImpl proveedorMgr;
-    private VistaProveedores ventana;
-    Vector nombresCol;
+    static int datoID = 0;
+    static int datoNombre = 1;
+    static int datoDireccion = 2;
+    static int datoTelefono = 3;
+    static int datoRFC = 4;
 
     public HelperProveedores() {
-        proveedorMgr = new ProveedorMgrImpl();
-        nombresCol = new Vector();
-        nombresCol.add("ID");
-        nombresCol.add("Nombre");
-        nombresCol.add("Direccion");
-        nombresCol.add("Telefono");
-        nombresCol.add("RFC");
-
-    }
-
-    private Vector VectorToArrayList(ArrayList<Proveedor> a) {
-        Vector vectorTabla = new Vector();
-
-        for (int i = 0; i < a.size(); i++) {
-            Proveedor c = a.get(i);
-            Vector v = new Vector();
-            v.add(c.getId());
-            v.add(c.getNombre());
-            v.add(c.getDireccion());
-            v.add(c.getTelefono());
-            v.add(c.getRfc());
-
-            vectorTabla.add(v);
-        }
-        return vectorTabla;
-    }
-
-    public void cargarTablaProveedores(JTable tabla) {
-        ArrayList<Proveedor> proveedorMgrs = (ArrayList<Proveedor>) proveedorMgr.cargarTodosLosProveedores();
-        Vector v = VectorToArrayList(proveedorMgrs);
-        DefaultTableModel dtm = new DefaultTableModel(v, nombresCol);
-        tabla.setModel(dtm);
-
     }
 
     public boolean camposSobrepasados(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono) {
@@ -77,7 +46,7 @@ public class HelperProveedores {
     public boolean camposVacios(JTextField txtNombre, JTextField txtDireccion) {
         String nombre = txtNombre.getText().trim();
         String direccion = txtDireccion.getText().trim();
-        if (nombre.equals("") || direccion.equals("")) {
+        if (nombre.isEmpty() || direccion.isEmpty()) {
             return true;
         } else {
             return false;
@@ -94,13 +63,14 @@ public class HelperProveedores {
         }
     }
 
-    public void bloquearBotones(JButton btnModificar, JButton btnBorrar) {
-        btnModificar.setEnabled(false);
+    public void bloquearBotones(JButton btnGuardar, JButton btnBorrar, JButton btnModificar) {
+        btnGuardar.setEnabled(false);
         btnBorrar.setEnabled(false);
+        btnModificar.setEnabled(false);
     }
 
-    public void desbloquearBotones(JButton btnModificar, JButton btnBorrar) {
-        btnModificar.setEnabled(true);
+    public void desbloquearBotones(JButton btnGuardar, JButton btnBorrar) {
+        btnGuardar.setEnabled(true);
         btnBorrar.setEnabled(true);
     }
 
@@ -125,36 +95,54 @@ public class HelperProveedores {
         txtTelefono.setText("");
         txtRFC.setText("");
     }
+
+    public Boolean verificarRfcProveedor(JTextField txtRFC) {
+        String rfc = txtRFC.getText().trim().toUpperCase();
+        String expresionRegularRFC = "^[A-Z]{3,4}[ \\-]?[0-9]{2}((0{1}[1-9]{1})|(1{1}[0-2]{1}))((0{1}[1-9]{1})|([1-2]{1}[0-9]{1})|(3{1}[0-1]{1}))[ \\-]?[A-Z0-9]{3}";
+        Pattern pattern = Pattern.compile(expresionRegularRFC);
+        Matcher matcher = pattern.matcher(rfc);
+        return matcher.matches();
+    }
     ArrayList arregloProveedor = new ArrayList();
 
     public ArrayList obtenerDatosFilaSeleccionada(JTable tablaProveedores) {
-        int columnaID = 0;
-        int columnaNombre = 1;
-        int columnaDireccion = 2;
-        int columnaTelefono = 3;
-        int columnaRFC = 4;
         arregloProveedor.clear();
         int filaSeleccionada = tablaProveedores.getSelectedRow();
-        Object id = (Object) tablaProveedores.getValueAt(filaSeleccionada, columnaID);
-        String nombre = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaNombre);
-        String direccion = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaDireccion);
-        String telefono = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaTelefono);
-        String rfc = (String) tablaProveedores.getValueAt(filaSeleccionada, columnaRFC);
+        Object id = (Object) tablaProveedores.getValueAt(filaSeleccionada, datoID);
+        String nombre = (String) tablaProveedores.getValueAt(filaSeleccionada, datoNombre);
+        String direccion = (String) tablaProveedores.getValueAt(filaSeleccionada, datoDireccion);
+        String telefono = (String) tablaProveedores.getValueAt(filaSeleccionada, datoTelefono);
+        String rfc = (String) tablaProveedores.getValueAt(filaSeleccionada, datoRFC);
+        colocarDatosEnArreglo(id, nombre, direccion, telefono, rfc);
+        return arregloProveedor;
+    }
+
+    private void colocarDatosEnArreglo(Object id, String nombre, String direccion, String telefono, String rfc) {
         arregloProveedor.add(id);
         arregloProveedor.add(nombre);
         arregloProveedor.add(direccion);
         arregloProveedor.add(telefono);
         arregloProveedor.add(rfc);
-        return arregloProveedor;
     }
 
+    /*
+     * private void obtenerDatosDeArreglo(){ ArrayList arregloDatosProveedor =
+     * (ArrayList) arregloProveedor.clone(); Object id =
+     * arregloDatosProveedor.get(datoID); String nombre = (String)
+     * arregloDatosProveedor.get(datoNombre); String direccion = (String)
+     * arregloDatosProveedor.get(datoDireccion); String telefono = (String)
+     * arregloDatosProveedor.get(datoTelefono); String rfc = (String)
+     * arregloDatosProveedor.get(datoRFC);
+    }
+     */
     public void ponerDatosSeleccionados(JTextField txtID, JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
         ArrayList arregloDatosProveedor = (ArrayList) arregloProveedor.clone();
-        Object id = arregloDatosProveedor.get(0);
-        String nombre = (String) arregloDatosProveedor.get(1);
-        String direccion = (String) arregloDatosProveedor.get(2);
-        String telefono = (String) arregloDatosProveedor.get(3);
-        String rfc = (String) arregloDatosProveedor.get(4);
+        Object id = arregloDatosProveedor.get(datoID);
+        String nombre = (String) arregloDatosProveedor.get(datoNombre);
+        String direccion = (String) arregloDatosProveedor.get(datoDireccion);
+        String telefono = (String) arregloDatosProveedor.get(datoTelefono);
+        String rfc = (String) arregloDatosProveedor.get(datoRFC);
+        //obtenerDatosDeArreglo();
         txtNombre.setText(nombre);
         txtDireccion.setText(direccion);
         txtTelefono.setText(telefono);
@@ -162,8 +150,8 @@ public class HelperProveedores {
         txtRFC.setText(rfc);
     }
 
-    public void buscarProveedor(ButtonGroup grupo, JRadioButton opcionID, JRadioButton opcionNombre, JTextField txtBusqueda, JTable tablaProveedores) {
-        RowFilter<TableModel, Object> rowFilter = null;
+    public void buscarProveedor(JRadioButton opcionID, JRadioButton opcionNombre, JTextField txtBusqueda, JTable tablaProveedores) {
+        RowFilter<TableModel, Object> filtradorFilas = null;
         int columnaBuscar = 2;
 
         if (opcionID.isSelected()) {
@@ -177,11 +165,11 @@ public class HelperProveedores {
         try {
             String textoABuscar = txtBusqueda.getText();
             if (textoABuscar.isEmpty()) {
-                rowFilter = RowFilter.regexFilter(textoABuscar, columnaBuscar);
+                filtradorFilas = RowFilter.regexFilter(textoABuscar, columnaBuscar);
             } else {
-                String nombre = txtBusqueda.getText().trim();
-                nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
-                rowFilter = RowFilter.regexFilter(nombre, columnaBuscar);
+                String textoAEncontrar = txtBusqueda.getText().trim();
+                textoAEncontrar = textoAEncontrar.substring(0, 1).toUpperCase() + textoAEncontrar.substring(1, textoAEncontrar.length());
+                filtradorFilas = RowFilter.regexFilter(textoAEncontrar, columnaBuscar);
             }
         } catch (java.util.regex.PatternSyntaxException e) {
             JOptionPane.showMessageDialog(null, "Error al buscar en la tabla", "Error", JOptionPane.ERROR_MESSAGE);
@@ -189,15 +177,16 @@ public class HelperProveedores {
         TableRowSorter sorter = new TableRowSorter<TableModel>(tablaProveedores.getModel());
         tablaProveedores.setRowSorter(sorter);
         tablaProveedores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        sorter.setRowFilter(rowFilter);
+        sorter.setRowFilter(filtradorFilas);
 
     }
+    private ControladorProveedores control = new ControladorProveedores();
 
-    public void cargarTablaProveedores1(JTable tablaProveedores) {
+    public void cargarTablaProveedores(JTable tablaProveedores) {
         try {
             final DefaultTableModel modelosTabla = (DefaultTableModel) tablaProveedores.getModel();
             modelosTabla.setRowCount(0);
-            List proveedores = proveedorMgr.cargarTodosLosProveedores();
+            List proveedores = control.cargarProveedores();
             Object datosProveedor[] = new Object[5];//ARRAY DE 4
 
             Iterator<Proveedor> iterador = proveedores.iterator();
@@ -215,5 +204,4 @@ public class HelperProveedores {
             JOptionPane.showMessageDialog(null, "Error al cargar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 }

@@ -9,6 +9,7 @@ package com.dao.interfaces;
 import com.dao.interfaces.GenericDAO;
 import com.clinica.modelo.Egreso;
 import com.clinica.modelo.Proveedor;
+import java.util.List;
 
 /**
  *
@@ -16,5 +17,17 @@ import com.clinica.modelo.Proveedor;
  */
 public interface ProveedorDAO extends GenericDAO<Proveedor, Integer> {
     public Proveedor buscarPorNombre(String nombre);
+    
+    public Proveedor buscarProveedorPorNombre(String nombre);
+ 
+    public List<Proveedor> cargarTodosLosProveedores();
+ 
+    public void guardarProveedorNuevo(Proveedor proveedor);
+    
+    public void actualizarProveedor(Proveedor proveedor);
+ 
+    public Proveedor buscarProveedorPorID(Integer id);
+ 
+    public void borrarProveedor(Proveedor proveedor);  
     
 }
