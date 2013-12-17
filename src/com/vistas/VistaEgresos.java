@@ -370,7 +370,7 @@ public class VistaEgresos extends javax.swing.JFrame {
 
         control.actualizar(idField, conceptoField, tipoEgresoField, proveedorField, montoField);
         limpiarCampos();
-        control.cargarTabla(tablaEgresos);
+        control.recargarTabla(tablaEgresos);
         this.añadir.setVisible(true);
         this.actualizar.setVisible(false);
        

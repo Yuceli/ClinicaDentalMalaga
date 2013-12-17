@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import com.clinica.modelo.Egreso;
+import com.dao.manager.EgresoMgr;
 import com.dao.manager.EgresoMgrImpl;
 import com.vistas.VistaEgresos;
 import java.util.Date;
@@ -21,7 +22,7 @@ import javax.swing.table.TableModel;
  */
 public class HelperEgresos {
 
-    private EgresoMgrImpl egresos;
+    private EgresoMgr egresos;
     private VistaEgresos vistaEgresos;
     Vector nombresColumnas;
 
@@ -36,17 +37,17 @@ public class HelperEgresos {
 
     }
 
-    private Vector VectorToArrayList(ArrayList<Egreso> a) {
+    private Vector VectorToArrayList(ArrayList<Egreso> array) {
         Vector vectorTabla = new Vector();
 
-        for (int i = 0; i < a.size(); i++) {
-            Egreso c = a.get(i);
+        for (int i = 0; i < array.size(); i++) {
+            Egreso egresos = array.get(i);
             Vector v = new Vector();
-            v.add(c.getId());
-            v.add(c.getConcepto());
-            v.add(c.getTipoEgreso());
-            v.add(c.getProveedor());
-            v.add(c.getMonto());
+            v.add(egresos.getId());
+            v.add(egresos.getConcepto());
+            v.add(egresos.getTipoEgreso());
+            v.add(egresos.getProveedor());
+            v.add(egresos.getMonto());
 //            v.add(c.getFecha());
             vectorTabla.add(v);
         }
@@ -59,9 +60,9 @@ public class HelperEgresos {
     }
 
     public void cargarTabla(JTable tabla) {
-        ArrayList<Egreso> egreso = (ArrayList<Egreso>) egresos.cargarEgresos();
-        Vector v = VectorToArrayList(egreso);
-        DefaultTableModel dtm = new DefaultTableModel(v, nombresColumnas);
+        ArrayList<Egreso> egresoArrayList = (ArrayList<Egreso>) egresos.cargarEgresos();
+        Vector egresosArrayList = VectorToArrayList(egresoArrayList);
+        DefaultTableModel dtm = new DefaultTableModel(egresosArrayList, nombresColumnas);
         tabla.setModel(dtm);
     }
 
