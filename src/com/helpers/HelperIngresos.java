@@ -9,7 +9,6 @@ import javax.swing.table.DefaultTableModel;
 import com.clinica.modelo.Ingreso;
 import com.dao.manager.IngresoMgrImpl;
 import com.toedter.calendar.JDateChooser;
-import com.vistas.VistaIngresos;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -56,41 +55,41 @@ public class HelperIngresos {
         DefaultTableModel dtm = new DefaultTableModel(v, conceptosCol);
         tablaIngresos.setModel(dtm);
     }
-    public void llenarCampos(JTable tablaIngresos, JTextField tfID, 
-            JTextField tfConcepto, JTextField tfTipoIngreso, JTextField tfMonto, 
+    public void llenarCampos(JTable tablaIngresos, JTextField txtID, 
+            JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, 
             JDateChooser dcFecha){
         int filaSeleccionada = tablaIngresos.getSelectedRow();
         DefaultTableModel modelo = (DefaultTableModel) tablaIngresos.getModel();
-        tfID.setText(String.valueOf((Integer)modelo.getValueAt(filaSeleccionada, 
+        txtID.setText(String.valueOf((Integer)modelo.getValueAt(filaSeleccionada, 
                 columnaID)));
-        tfConcepto.setText((String) modelo.getValueAt(filaSeleccionada, 
+        txtConcepto.setText((String) modelo.getValueAt(filaSeleccionada, 
                 columnaConcepto));
-        tfTipoIngreso.setText((String) modelo.getValueAt(filaSeleccionada, 
+        txtTipoIngreso.setText((String) modelo.getValueAt(filaSeleccionada, 
                 columnaTipoIngreso));
-        tfMonto.setText(String.valueOf((Double)modelo.getValueAt(
+        txtMonto.setText(String.valueOf((Double)modelo.getValueAt(
                 filaSeleccionada, columnaMonto)));
         dcFecha.setDate((Date) modelo.getValueAt(filaSeleccionada, 
                 columnaFechaVenta));
     }
-    public void limpiar(JTextField tfID, JTextField tfConcepto, 
-            JTextField tfTipoIngreso, JTextField tfMonto, JDateChooser dcFecha){
-        tfID.setText("");
-        tfConcepto.setText("");
-        tfTipoIngreso.setText("");
-        tfMonto.setText("");
+    public void limpiar(JTextField txtID, JTextField txtConcepto, 
+            JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha){
+        txtID.setText("");
+        txtConcepto.setText("");
+        txtTipoIngreso.setText("");
+        txtMonto.setText("");
         dcFecha.setDate(null);
     }
     
     public void buscarIngreso(JRadioButton rbID, JRadioButton rbNombre, 
-            JTextField tfBusqueda, JTable tablaIngresos){
+            JTextField txtBusqueda, JTable tablaIngresos){
         RowFilter<TableModel, Object> rowFilter = null;
         int columnaBuscar = columnaABuscar(rbID, rbNombre);
         try {
-            String textoABuscar = tfBusqueda.getText();
+            String textoABuscar = txtBusqueda.getText();
             if (textoABuscar.isEmpty()) {
                 rowFilter = RowFilter.regexFilter(textoABuscar, columnaBuscar);
             } else {
-                String nombre = tfBusqueda.getText().trim();
+                String nombre = txtBusqueda.getText().trim();
                 nombre = nombre.substring(0, 1).toUpperCase() + 
                         nombre.substring(1, nombre.length());
                 rowFilter = RowFilter.regexFilter(nombre, columnaBuscar);
@@ -123,21 +122,21 @@ public class HelperIngresos {
         ingreso.setId(id);
         return ingreso;
     }
-    public Ingreso obtenerIngreso(JTextField tfConcepto, 
-            JTextField tfTipoIngreso, JTextField tfMontoIngreso, 
+    public Ingreso obtenerIngreso(JTextField txtConcepto, 
+            JTextField txtTipoIngreso, JTextField txtMontoIngreso, 
             JDateChooser dcFecha){
-        String concepto = tfConcepto.getText();
-        String tipoDeIngreso = tfTipoIngreso.getText();
-        Double monto = Double.parseDouble(tfMontoIngreso.getText());
+        String concepto = txtConcepto.getText();
+        String tipoDeIngreso = txtTipoIngreso.getText();
+        Double monto = Double.parseDouble(txtMontoIngreso.getText());
         Date fechaDeIngreso = dcFecha.getDate();
         Ingreso ingreso = new Ingreso(concepto, tipoDeIngreso, monto, fechaDeIngreso);
         return ingreso;
     }    
-    public boolean algunCampoVacio(JTextField tfConcepto, 
-            JTextField tfTipoIngreso, JTextField tfMonto, JDateChooser dcFecha){
-        String concepto = tfConcepto.getText();
-        String tipoIngreso = tfTipoIngreso.getText();
-        String monto = tfMonto.getText();
+    public boolean algunCampoVacio(JTextField txtConcepto, 
+            JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha){
+        String concepto = txtConcepto.getText();
+        String tipoIngreso = txtTipoIngreso.getText();
+        String monto = txtMonto.getText();
         Date fecha = dcFecha.getDate();
         if(concepto.isEmpty()||tipoIngreso.isEmpty()||monto.isEmpty()||fecha==null)
             return true;

@@ -88,9 +88,9 @@
                           </Group>
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tfMonto" min="-2" pref="682" max="-2" attributes="0"/>
+                              <Component id="txtMonto" min="-2" pref="682" max="-2" attributes="0"/>
                               <Component id="dcFecha" min="-2" pref="128" max="-2" attributes="0"/>
-                              <Component id="tfID" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="txtID" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -100,16 +100,16 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tfConcepto" pref="682" max="32767" attributes="0"/>
-                              <Component id="tfTipoIngreso" max="32767" attributes="0"/>
+                              <Component id="txtConcepto" pref="682" max="32767" attributes="0"/>
+                              <Component id="txtTipoIngreso" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="añadir" linkSize="3" min="-2" pref="119" max="-2" attributes="0"/>
+                          <Component id="bAñadir" linkSize="3" min="-2" pref="119" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="actualizar" linkSize="3" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="bActualizar" linkSize="3" min="-2" pref="137" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -123,17 +123,17 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="tfConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtConcepto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="tfTipoIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTipoIngreso" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfMonto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtMonto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -143,12 +143,12 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="añadir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="actualizar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bAñadir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bActualizar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
@@ -167,24 +167,24 @@
             <Property name="text" type="java.lang.String" value="Tipo de ingreso :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfTipoIngreso">
+        <Component class="javax.swing.JTextField" name="txtTipoIngreso">
         </Component>
-        <Component class="javax.swing.JTextField" name="tfConcepto">
+        <Component class="javax.swing.JTextField" name="txtConcepto">
         </Component>
-        <Component class="javax.swing.JButton" name="a&#xf1;adir">
+        <Component class="javax.swing.JButton" name="bA&#xf1;adir">
           <Properties>
             <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a&#xf1;adirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bA&#xf1;adirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="actualizar">
+        <Component class="javax.swing.JButton" name="bActualizar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Actualizar datos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bActualizarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
@@ -197,7 +197,7 @@
             <Property name="text" type="java.lang.String" value="Fecha : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfMonto">
+        <Component class="javax.swing.JTextField" name="txtMonto">
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="dcFecha">
         </Component>
@@ -206,7 +206,7 @@
             <Property name="text" type="java.lang.String" value="ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfID">
+        <Component class="javax.swing.JTextField" name="txtID">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -323,7 +323,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfBusqueda" min="-2" pref="59" max="-2" attributes="0"/>
+                          <Component id="txtBusqueda" min="-2" pref="59" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -343,7 +343,7 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="rbID" min="-2" max="-2" attributes="0"/>
@@ -360,7 +360,7 @@
             <Property name="text" type="java.lang.String" value="Buscar por: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfBusqueda">
+        <Component class="javax.swing.JTextField" name="txtBusqueda">
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbID">
           <Properties>
@@ -398,9 +398,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="editar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="borrar" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="salir" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="bEditar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="bBorrar" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="bRegresar" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -410,39 +410,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="editar" min="-2" max="-2" attributes="0"/>
+                  <Component id="bEditar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="borrar" min="-2" max="-2" attributes="0"/>
+                  <Component id="bBorrar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="salir" min="-2" max="-2" attributes="0"/>
+                  <Component id="bRegresar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="editar">
+        <Component class="javax.swing.JButton" name="bEditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar Registro"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEditarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="borrar">
+        <Component class="javax.swing.JButton" name="bBorrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Borrar Registro"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="borrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bBorrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="salir">
+        <Component class="javax.swing.JButton" name="bRegresar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bRegresarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
