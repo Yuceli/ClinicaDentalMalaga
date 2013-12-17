@@ -3,13 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.vistas;
 
-
-import com.clinica.manager.ControladorProveedores;
-import com.dao.manejador.proveedores.ProveedorMgr;
-import com.dao.manejador.proveedores.ProveedorMgrImpl;
+import com.dao.manager.ControladorProveedores;
 import com.helpers.HelperProveedores;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -21,45 +17,43 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author Yuceli
+ * @author
  */
 public class VistaProveedores extends javax.swing.JFrame {
 
-     private DefaultTableModel dtm;
-     private HelperProveedores helper;
-     private ControladorProveedores control;
-     ProveedorMgr proveedorMgr = new ProveedorMgrImpl();     
-     
+    private HelperProveedores helper;
+    private ControladorProveedores control;
+
     public VistaProveedores() {
         initComponents();
         this.control = new ControladorProveedores();
         this.helper = new HelperProveedores();
         helper.cargarTablaProveedores(tablaProveedores);
-        helper.bloquearBotones(btnModificar, btnBorrar);
-        btnModificar.setVisible(true);
-        
-         txtBusqueda.getDocument().addDocumentListener(
+        helper.bloquearBotones(btnGuardar, btnBorrar, btnModificar);
+        btnGuardar.setVisible(true);
+
+        txtBusqueda.getDocument().addDocumentListener(
                 new DocumentListener() {
 
-            @Override
+                    @Override
                     public void changedUpdate(DocumentEvent e) {
-                        helper.buscarProveedor(opBusqueda,opcionID,opcionNombre, txtBusqueda, tablaProveedores);
+                        helper.buscarProveedor(opcionID, opcionNombre, txtBusqueda, tablaProveedores);
                     }
 
-            @Override
+                    @Override
                     public void insertUpdate(DocumentEvent e) {
-                        helper.buscarProveedor(opBusqueda,opcionID,opcionNombre, txtBusqueda, tablaProveedores);
+                        helper.buscarProveedor(opcionID, opcionNombre, txtBusqueda, tablaProveedores);
                     }
 
-            @Override
+                    @Override
                     public void removeUpdate(DocumentEvent e) {
-                        helper.buscarProveedor(opBusqueda,opcionID,opcionNombre, txtBusqueda, tablaProveedores);
+                        helper.buscarProveedor(opcionID, opcionNombre, txtBusqueda, tablaProveedores);
                     }
                 });
         TableRowSorter sorter = new TableRowSorter<TableModel>(tablaProveedores.getModel());
         tablaProveedores.setRowSorter(sorter);
     }
-    
+
     public void abrirVentana() {
 
         setVisible(true);
@@ -84,9 +78,10 @@ public class VistaProveedores extends javax.swing.JFrame {
         opcionID = new javax.swing.JRadioButton();
         opcionNombre = new javax.swing.JRadioButton();
         opTabla = new javax.swing.JPanel();
-        btnLimpiar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
         datos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -94,12 +89,12 @@ public class VistaProveedores extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         btnAñadir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelRFC = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
-        btnModificar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,13 +102,10 @@ public class VistaProveedores extends javax.swing.JFrame {
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Id", "Nombre", "Dirección", "Teléfono", "RFC"
+                "ID", "Nombre", "Dirección", "Teléfono", "RFC"
             }
         ) {
             Class[] types = new Class [] {
@@ -168,11 +160,6 @@ public class VistaProveedores extends javax.swing.JFrame {
 
         opBusqueda.add(opcionNombre);
         opcionNombre.setText("Nombre");
-        opcionNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcionNombreActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
@@ -206,13 +193,6 @@ public class VistaProveedores extends javax.swing.JFrame {
 
         opTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Tabla"));
 
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-
         btnBorrar.setText("Borrar Registro");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,21 +207,33 @@ public class VistaProveedores extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setText("Limpiar Campos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        btnModificar.setText("Modificar Registro");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout opTablaLayout = new javax.swing.GroupLayout(opTabla);
         opTabla.setLayout(opTablaLayout);
         opTablaLayout.setHorizontalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opTablaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                .addGap(22, 22, 22))
-            .addGroup(opTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(opTablaLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         opTablaLayout.setVerticalGroup(
@@ -249,11 +241,13 @@ public class VistaProveedores extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opTablaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap())
         );
 
         datos.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -271,16 +265,16 @@ public class VistaProveedores extends javax.swing.JFrame {
 
         jLabel1.setText("Telefono");
 
-        jLabel4.setText("Rfc");
+        labelRFC.setText("RFC");
 
         jLabel6.setText("ID");
 
         txtID.setEditable(false);
 
-        btnModificar.setText("Modificar Datos");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.setText("Guardar modificación");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
@@ -302,16 +296,16 @@ public class VistaProveedores extends javax.swing.JFrame {
                     .addGroup(datosLayout.createSequentialGroup()
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel4)
+                            .addComponent(labelRFC)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(datosLayout.createSequentialGroup()
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 362, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(68, 68, 68)
-                                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(68, 68, 68))
                             .addComponent(txtRFC)
                             .addComponent(txtTelefono))))
@@ -335,7 +329,7 @@ public class VistaProveedores extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(labelRFC)
                     .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosLayout.createSequentialGroup()
@@ -348,7 +342,7 @@ public class VistaProveedores extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -358,17 +352,16 @@ public class VistaProveedores extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(opTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(opTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -376,21 +369,24 @@ public class VistaProveedores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(opTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(opTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(opciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTabla, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-
+        try{
         helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al limpiar campos de texto", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
@@ -398,9 +394,11 @@ public class VistaProveedores extends javax.swing.JFrame {
         try {
             int seleccion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea borrar el registro?", "Borrar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (JOptionPane.YES_OPTION == seleccion) {
-                control.borrarProveedor(txtID);
-                helper.cargarTablaProveedores1(tablaProveedores);
+                control.borrarProveedor(tablaProveedores);
+                helper.cargarTablaProveedores(tablaProveedores);
                 helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro eliminado",JOptionPane.INFORMATION_MESSAGE);
+
             } else {
                 helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
             }
@@ -412,25 +410,31 @@ public class VistaProveedores extends javax.swing.JFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         // TODO add your handling code here:
+        try{
         this.dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al salir", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_salirActionPerformed
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
 
-          try {
+        try {
             if (helper.camposSobrepasados(txtNombre, txtDireccion, txtTelefono)) {
                 JOptionPane.showMessageDialog(null, "Los campos no pueden exceder de 100 caracteres", "Advertencia", JOptionPane.WARNING_MESSAGE);
                 helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
             } else if (helper.camposVacios(txtNombre, txtDireccion)) {
                 JOptionPane.showMessageDialog(null, "Llene los campos, porfavor.", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
-            } else if (!control.verificarRfcProveedor(txtRFC)) {
+            } else if (!helper.verificarRfcProveedor(txtRFC)) {
                 JOptionPane.showMessageDialog(null, "RFC inválido", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (!helper.telefonoEsNumerico(txtTelefono)) {
                 JOptionPane.showMessageDialog(null, "Ingrese un teléfono válido", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 control.añadirProveedor(txtNombre, txtDireccion, txtTelefono, txtRFC);
-               helper.cargarTablaProveedores1(tablaProveedores);
+                helper.cargarTablaProveedores(tablaProveedores);
                 helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente", "Registro ingresado",JOptionPane.INFORMATION_MESSAGE);
+
             }
 
         } catch (Exception e) {
@@ -441,25 +445,23 @@ public class VistaProveedores extends javax.swing.JFrame {
     private void tablaProveedoresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaProveedoresKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            helper.desbloquearBotones(btnModificar, btnBorrar);
-            helper.obtenerDatosFilaSeleccionada(tablaProveedores);
-            helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+            btnModificar.setEnabled(true);
+            //helper.desbloquearBotones(btnGuardar, btnBorrar, btnModificar);
+            //helper.obtenerDatosFilaSeleccionada(tablaProveedores);
+           // helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
             evt.consume();
         }
     }//GEN-LAST:event_tablaProveedoresKeyPressed
 
     private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
         // TODO add your handling code here:
-         helper.desbloquearBotones(btnModificar, btnBorrar);
-        helper.obtenerDatosFilaSeleccionada(tablaProveedores);
-        helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+        btnModificar.setEnabled(true);
+        //helper.desbloquearBotones(btnGuardar, btnBorrar, btnModificar);
+        //helper.obtenerDatosFilaSeleccionada(tablaProveedores);
+        //helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
     }//GEN-LAST:event_tablaProveedoresMouseClicked
 
-    private void opcionNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_opcionNombreActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         try {
             if (helper.camposSobrepasados(txtNombre, txtDireccion, txtTelefono)) {
@@ -467,35 +469,47 @@ public class VistaProveedores extends javax.swing.JFrame {
                 helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
             } else if (helper.camposVacios(txtNombre, txtDireccion)) {
                 JOptionPane.showMessageDialog(null, "Llene los campos, porfavor.", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
-            } else if (!control.verificarRfcProveedor(txtRFC)) {
+            } else if (!helper.verificarRfcProveedor(txtRFC)) {
                 JOptionPane.showMessageDialog(null, "RFC inválido", "Error", JOptionPane.ERROR_MESSAGE);
             } else if (!helper.telefonoEsNumerico(txtTelefono)) {
                 JOptionPane.showMessageDialog(null, "Ingrese un teléfono válido", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 control.actualizarProveedor(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
-               helper.cargarTablaProveedores1(tablaProveedores);
+                helper.cargarTablaProveedores(tablaProveedores);
                 helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+                JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro modificado",JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al modificar los datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnModificarActionPerformed
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        try{
+        helper.desbloquearBotones(btnGuardar, btnBorrar);
+        helper.obtenerDatosFilaSeleccionada(tablaProveedores);
+        helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadir;
     private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JPanel datos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jTabla;
+    private javax.swing.JLabel labelRFC;
     private javax.swing.ButtonGroup opBusqueda;
     private javax.swing.JPanel opTabla;
     private javax.swing.JRadioButton opcionID;

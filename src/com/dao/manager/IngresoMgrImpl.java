@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.dao.manejador.ingresos;
+package com.dao.manager;
 
 import java.util.ArrayList;
 import java.util.Date;
