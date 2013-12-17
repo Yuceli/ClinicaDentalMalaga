@@ -59,11 +59,11 @@ public class HelperEgresos {
     public void cargarTabla(JTable tabla) {
         ArrayList<Egreso> egresoArrayList = (ArrayList<Egreso>) egresos.cargarEgresos();
         Vector egresosArrayList = VectorToArrayList(egresoArrayList);
-        DefaultTableModel dtm = new DefaultTableModel(egresosArrayList, nombresColumnas);
+        DefaultTableModel modeloTabla = new DefaultTableModel(egresosArrayList, nombresColumnas);
         //Para ordenar las columnas
-        TableRowSorter<TableModel> ordenColumnas = new TableRowSorter<TableModel>(dtm);
+        TableRowSorter<TableModel> ordenColumnas = new TableRowSorter<TableModel>(modeloTabla);
         tabla.setRowSorter(ordenColumnas);
-        tabla.setModel(dtm);
+        tabla.setModel(modeloTabla);
     }
 
     public void actualizar(JTextField idField, JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField, JTextField montoField) {
