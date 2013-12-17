@@ -14,8 +14,11 @@
         <property name="tipoDeIngreso" type="string">
             <column name="TipoDeIngreso" length="100" />
         </property>
-        <property name="monto" type="string">
+        <property name="monto" type="double">
             <column name="Monto" length="100" />
+        </property>
+        <property name="fechaDeVenta" type="date">
+            <column name="FechaDeVenta" />
         </property>
     </class>
 </hibernate-mapping>
