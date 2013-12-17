@@ -13,8 +13,8 @@ import com.clinica.modelo.Egreso;
 import com.dao.manager.EgresoMgr;
 import com.dao.manager.EgresoMgrImpl;
 import com.vistas.VistaEgresos;
-import java.util.Date;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -60,6 +60,9 @@ public class HelperEgresos {
         ArrayList<Egreso> egresoArrayList = (ArrayList<Egreso>) egresos.cargarEgresos();
         Vector egresosArrayList = VectorToArrayList(egresoArrayList);
         DefaultTableModel dtm = new DefaultTableModel(egresosArrayList, nombresColumnas);
+        //Para ordenar las columnas
+        TableRowSorter<TableModel> ordenColumnas = new TableRowSorter<TableModel>(dtm);
+        tabla.setRowSorter(ordenColumnas);
         tabla.setModel(dtm);
     }
 

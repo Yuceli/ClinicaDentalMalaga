@@ -4,10 +4,7 @@
  */
 package com.vistas;
 
-import com.dao.manager.EgresoMgr;
-import com.dao.manager.EgresoMgrImpl;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import com.helpers.HelperEgresos;
 
 /**
@@ -21,6 +18,7 @@ public class VistaEgresos extends javax.swing.JFrame {
         this.control = new HelperEgresos();
         control.cargarTabla(tablaEgresos);
         this.actualizar.setVisible(false);
+
     }
 
     /**
@@ -412,6 +410,7 @@ public void abrirVentana() {
             java.util.logging.Logger.getLogger(VistaEgresos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
