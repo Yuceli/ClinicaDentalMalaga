@@ -30,9 +30,9 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
         LabelContraseña = new javax.swing.JLabel();
         BotonAceptar = new javax.swing.JButton();
         jTextUsuario = new javax.swing.JTextField();
-        jTextContraseña = new javax.swing.JTextField();
         BotonCancelar = new javax.swing.JButton();
         mensajeDeError = new javax.swing.JLabel();
+        jPasswordContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -68,18 +68,21 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
                 .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelInicioSesionLayout.createSequentialGroup()
                         .addComponent(LabelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(jTextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelInicioSesionLayout.createSequentialGroup()
                         .addComponent(LabelContraseña)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                         .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInicioSesionLayout.createSequentialGroup()
+                            .addGroup(PanelInicioSesionLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BotonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(31, 31, 31)
                                 .addComponent(BotonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36))
-                            .addComponent(jTextContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(PanelInicioSesionLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jPasswordContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(24, 24, 24))
             .addGroup(PanelInicioSesionLayout.createSequentialGroup()
                 .addContainerGap()
@@ -96,7 +99,7 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonAceptar)
@@ -128,7 +131,7 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
 
     private void BotonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAceptarActionPerformed
         // TODO add your handling code here:
-         if (jTextUsuario.getText().equals("root") && jTextContraseña.getText().equals("root")){ 
+         if (jTextUsuario.getText().equals("root") && String.valueOf(jPasswordContraseña.getPassword()).equals("root")){ 
             setVisible(false);
             VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
             ventanaPrincipal.mostrar();     
@@ -137,7 +140,7 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
             mensajeDeError.setText("Contraseña o usuario incorrecto");
             setVisible(true);
             jTextUsuario.setText("");
-            jTextContraseña.setText("");
+            jPasswordContraseña.setText("");
             
         }
        
@@ -145,7 +148,7 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
 
     private void BotonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCancelarActionPerformed
       jTextUsuario.setText("");
-      jTextContraseña.setText("");
+      jPasswordContraseña.setText("");
       mensajeDeError.setText("");
     }//GEN-LAST:event_BotonCancelarActionPerformed
     
@@ -191,7 +194,7 @@ public class VistaInicioDeSesion extends javax.swing.JFrame {
     private javax.swing.JLabel LabelContraseña;
     private javax.swing.JLabel LabelUsuario;
     private javax.swing.JPanel PanelInicioSesion;
-    private javax.swing.JTextField jTextContraseña;
+    private javax.swing.JPasswordField jPasswordContraseña;
     private javax.swing.JTextField jTextUsuario;
     private javax.swing.JLabel mensajeDeError;
     // End of variables declaration//GEN-END:variables
