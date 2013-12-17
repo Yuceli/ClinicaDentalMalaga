@@ -15,22 +15,12 @@ import com.helpers.HelperEgresos;
  */
 public class VistaEgresos extends javax.swing.JFrame {
 
-    private DefaultTableModel dtm;
-    private HelperEgresos control;
-    EgresoMgr cliente = new EgresoMgrImpl();
-    private int filaSeleccionada = 0;
-
     public VistaEgresos() {
         initComponents();
         setLocationRelativeTo(null);
         this.control = new HelperEgresos();
         control.cargarTabla(tablaEgresos);
         this.actualizar.setVisible(false);
-    }
-
-    public void abrirVentana() {
-
-        setVisible(true);
     }
 
     /**
@@ -247,13 +237,13 @@ public class VistaEgresos extends javax.swing.JFrame {
 
         tablaEgresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Concepto", "Tipo de egreso", "Proveedores", "Monto"
+                "Id", "Concepto", "Tipo de egreso", "Proveedores", "Monto", "Fecha"
             }
         ));
         tablaEgresos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -339,56 +329,43 @@ public class VistaEgresos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public void abrirVentana() {
+        setVisible(true);
+    }
+
 
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
-
         control.añadirEgreso(conceptoField, tipoEgresoField, proveedorField, montoField);
         control.cargarTabla(tablaEgresos);
         limpiarCampos();
-
-
     }//GEN-LAST:event_añadirActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
-        // TODO add your handling code here:
-        if (this.tablaEgresos.getSelectedRowCount() != 1) {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila de la tabla");
-
-        } else {
-            filaSeleccionada = this.tablaEgresos.getSelectedRow();
-            DefaultTableModel modelo = (DefaultTableModel) tablaEgresos.getModel();
-            String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
-            String direccion = (String) modelo.getValueAt(filaSeleccionada, 2);
-            String correo = (String) modelo.getValueAt(filaSeleccionada, 3);
-            int id = (Integer) modelo.getValueAt(filaSeleccionada, 0);
-            control.borrar(id, nombre, direccion, correo, Double.NaN);
-            control.cargarTabla(tablaEgresos);
-        }
+        control.borrarEgreso(idField, conceptoField, tipoEgresoField, proveedorField, montoField);
+        limpiarCampos();
+        control.recargarTabla(tablaEgresos);
     }//GEN-LAST:event_borrarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
-
         control.actualizar(idField, conceptoField, tipoEgresoField, proveedorField, montoField);
         limpiarCampos();
         control.recargarTabla(tablaEgresos);
         this.añadir.setVisible(true);
         this.actualizar.setVisible(false);
-       
 
 
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        // TODO add your handling code here:
         if (jConcepto.isSelected()) {
             String busqueda = txtBusqueda.getText();
-            control.buscarDatosPorNombre(busqueda, proveedorField, conceptoField, tipoEgresoField, proveedorField);
+            control.buscarDatosPorNombre(busqueda, idField, conceptoField, proveedorField, tipoEgresoField, montoField);
         }
         if (jId.isSelected()) {
             String busqueda = txtBusqueda.getText();
             try {
                 Integer ID = Integer.parseInt(busqueda);
-                control.buscarDatosPorId(ID, proveedorField, conceptoField, tipoEgresoField, proveedorField);
+                control.buscarDatosPorId(ID, idField, conceptoField, proveedorField, tipoEgresoField, montoField);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "El ID ingresado no es encuentra en la lista de clientes");
             }
@@ -396,11 +373,10 @@ public class VistaEgresos extends javax.swing.JFrame {
     }//GEN-LAST:event_buscarActionPerformed
 
     private void tablaEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEgresosMouseClicked
-        
-        control.editarEgresos(tablaEgresos, tablaEgresos.getSelectedRow(), conceptoField, tipoEgresoField, proveedorField, montoField);
+
+        control.editarEgresos(tablaEgresos, tablaEgresos.getSelectedRow(), idField, conceptoField, tipoEgresoField, proveedorField, montoField);
         this.actualizar.setVisible(true);
         this.añadir.setVisible(false);
-        
 
 
     }//GEN-LAST:event_tablaEgresosMouseClicked
@@ -412,7 +388,7 @@ public class VistaEgresos extends javax.swing.JFrame {
         montoField.setText("");
         idField.setText("");
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -444,6 +420,9 @@ public class VistaEgresos extends javax.swing.JFrame {
             }
         });
     }
+
+    private HelperEgresos control;
+    private int filaSeleccionada = 0;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
