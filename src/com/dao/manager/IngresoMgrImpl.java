@@ -1,6 +1,9 @@
 
 package com.dao.manager;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -11,7 +14,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import com.dao.implementaciones.IngresoDAOImpl;
 import com.clinica.modelo.Ingreso;
-import com.dao.interfaces.IngresoDAO;
 import com.persistence.hibernate.HibernateUtil;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JTextField;
@@ -65,28 +67,7 @@ public class IngresoMgrImpl implements IngresoMgr {
             HibernateUtil.rollbackTransaction();
         }
     }
-    
-   
-    public double calcularIngresoDiario(Date dia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    public double calcularIngresoSemanal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    public double calcularIngresoMensual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    public double calcularIngresoAnual() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+        
     public Ingreso buscarIngresoPorID(Integer id) {
         Ingreso ingreso = null;
         try {
@@ -98,7 +79,6 @@ public class IngresoMgrImpl implements IngresoMgr {
         }
         return ingreso;
     }
-
     
     public Ingreso buscarIngresoPorNombre(String nombre) {
         Ingreso ingreso = null;
@@ -114,7 +94,6 @@ public class IngresoMgrImpl implements IngresoMgr {
         }
         return ingreso;
     }
-
     
     public List<Ingreso> cargarTodosLosIngresos() {
         List<Ingreso> ingresos = new ArrayList<Ingreso>();
@@ -127,7 +106,6 @@ public class IngresoMgrImpl implements IngresoMgr {
         }
         return ingresos;
     }
-
     
     public void cargarTablaIngreso(JTable tablaIngresos) {
         try {

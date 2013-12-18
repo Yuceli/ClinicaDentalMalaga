@@ -1,6 +1,9 @@
 
 package com.dao.manager;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import com.clinica.modelo.Ingreso;
 import com.dao.implementaciones.IngresoDAOImpl;
 import com.toedter.calendar.JDateChooser;

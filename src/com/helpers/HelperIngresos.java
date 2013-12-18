@@ -1,5 +1,8 @@
 package com.helpers;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -156,7 +159,7 @@ public class HelperIngresos {
     }
 
     private ControladorIngresos control = new ControladorIngresos();
-    ArrayList arregloIngreso = new ArrayList();
+    private ArrayList arregloIngreso = new ArrayList();
     private static final int columnaID = 0;
     private static final int columnaConcepto = 1;
     private static final int columnaTipoIngreso = 2;

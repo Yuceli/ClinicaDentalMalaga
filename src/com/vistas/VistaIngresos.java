@@ -1,6 +1,9 @@
 
 package com.vistas;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import com.dao.manager.ControladorIngresos;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;

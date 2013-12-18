@@ -1,6 +1,9 @@
 
 package com.dao.manager;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
@@ -15,14 +18,6 @@ public interface IngresoMgr {
     public void borrarIngreso(JTable tablaIngresos);
 
     public void actualizarIngreso(JTextField txtID, JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMontoIngreso, JDateChooser dcFecha);
-
-    public double calcularIngresoDiario(Date dia);
-
-    public double calcularIngresoSemanal();
-
-    public double calcularIngresoMensual();
-
-    public double calcularIngresoAnual();
 
     public Ingreso buscarIngresoPorID(Integer id);
 

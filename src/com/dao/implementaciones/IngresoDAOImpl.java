@@ -1,6 +1,9 @@
 
 package com.dao.implementaciones;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import com.clinica.modelo.Ingreso;
 import com.dao.interfaces.IngresoDAO;
 import com.persistence.hibernate.HibernateUtil;

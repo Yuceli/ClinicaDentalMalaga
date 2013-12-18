@@ -1,6 +1,9 @@
 
 package com.dao.interfaces;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import com.clinica.modelo.Ingreso;
 import java.util.List;
 
