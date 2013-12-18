@@ -405,7 +405,7 @@ public class VistaIngresos extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         try {
-            if (helper.camposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)) {
+            if (helper.estanCamposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)) {
                 JOptionPane.showMessageDialog(null, "Llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 control.actualizarIngreso(txtID, txtConcepto, txtTipoIngreso, txtTipoIngreso, dcFecha);
@@ -420,7 +420,7 @@ public class VistaIngresos extends javax.swing.JFrame {
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
         try {
-            if (helper.camposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)) {
+            if (helper.estanCamposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)) {
                 JOptionPane.showMessageDialog(null, "Llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 control.añadirIngreso(txtConcepto, txtTipoIngreso, txtTipoIngreso, dcFecha);

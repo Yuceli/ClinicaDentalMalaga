@@ -14,8 +14,6 @@ public interface IngresoDAO extends GenericDAO<Ingreso, Integer> {
     public void actualizarIngreso(Ingreso ingreso);
     
     public Ingreso buscarIngresoPorID(Integer id);
-    public Ingreso buscarIngresoPorNombre(String nombre);
-    public Ingreso buscarPorNombre(String nombre);
  
     public List<Ingreso> cargarTodosLosIngresos();
 }

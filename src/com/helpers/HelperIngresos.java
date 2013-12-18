@@ -26,7 +26,7 @@ public class HelperIngresos {
     public HelperIngresos() {
     }
     
-    public boolean camposVacios(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha){
+    public boolean estanCamposVacios(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha){
         String concepto = txtConcepto.getText();
         String tipoIngreso = txtTipoIngreso.getText();
         String monto = txtMonto.getText();
@@ -45,19 +45,6 @@ public class HelperIngresos {
     public void desbloquearBotones(JButton btnActualizar, JButton btnBorrar) {
         btnActualizar.setEnabled(true);
         btnBorrar.setEnabled(true);
-    }
-    
-    public void bloquearCamposTexto(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha) {
-        txtConcepto.setEnabled(false);
-        txtTipoIngreso.setEnabled(false);
-        txtMonto.setEnabled(false);
-        dcFecha.setEnabled(false);
-    }
-    public void desbloquearCamposTextoE(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha) {
-        txtConcepto.setEnabled(true);
-        txtTipoIngreso.setEnabled(true);
-        txtMonto.setEnabled(true);
-        dcFecha.setEnabled(true);
     }
     
     public void limpiarCamposTexto(JTextField txtBusqueda, JTextField txtID, JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha) {
@@ -79,13 +66,6 @@ public class HelperIngresos {
         Date fechaDeVenta = (Date) tablaIngresos.getValueAt(filaSeleccionada, columnaFechaVenta);
         this.colocarDatosEnArreglo(id, concepto, tipoIngreso, monto, fechaDeVenta);
         return arregloIngreso;
-    }
-    private void colocarDatosEnArreglo(Object id, String concepto, String tipoIngreso, Double monto, Date fechaDeVenta) {
-        arregloIngreso.add(id);
-        arregloIngreso.add(concepto);
-        arregloIngreso.add(tipoIngreso);
-        arregloIngreso.add(monto);
-        arregloIngreso.add(fechaDeVenta);
     }
     public void ponerDatosSeleccionados(JTextField txtID, JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha) {
         ArrayList arregloDatosIngreso = (ArrayList) arregloIngreso.clone();
@@ -162,5 +142,12 @@ public class HelperIngresos {
         } else {
             return 2;
         }
+    }
+    private void colocarDatosEnArreglo(Object id, String concepto, String tipoIngreso, Double monto, Date fechaDeVenta) {
+        arregloIngreso.add(id);
+        arregloIngreso.add(concepto);
+        arregloIngreso.add(tipoIngreso);
+        arregloIngreso.add(monto);
+        arregloIngreso.add(fechaDeVenta);
     }
 }

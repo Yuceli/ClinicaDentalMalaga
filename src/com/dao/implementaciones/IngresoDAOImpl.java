@@ -9,9 +9,7 @@ import com.dao.interfaces.IngresoDAO;
 import com.persistence.hibernate.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.NonUniqueResultException;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 
 public class IngresoDAOImpl extends GenericDAOImpl<Ingreso, Integer> implements IngresoDAO{
 
@@ -63,32 +61,7 @@ public class IngresoDAOImpl extends GenericDAOImpl<Ingreso, Integer> implements 
         }
         return ingreso;
     }
-
-    @Override
-    public Ingreso buscarIngresoPorNombre(String nombre) {
-        Ingreso ingreso = null;
-        try {
-            HibernateUtil.beginTransaction();
-            ingreso = buscarPorNombre(nombre);
-            HibernateUtil.commitTransaction();
-        } catch (NonUniqueResultException ex) {
-            System.out.println("Handle your error here");
-            System.out.println("Query returned more than one results.");
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-        }
-        return ingreso;
-    }
-
-    @Override
-    public Ingreso buscarPorNombre(String nombre) {
-        Ingreso ingreso = null;
-        String sql = BuscarIngresoPorNombre;
-        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("nombre", nombre);
-        ingreso = buscarUno(query);
-        return ingreso;
-    }
-
+    
     @Override
     public List<Ingreso> cargarTodosLosIngresos() {
         List<Ingreso> ingresos = new ArrayList<Ingreso>();
@@ -101,6 +74,4 @@ public class IngresoDAOImpl extends GenericDAOImpl<Ingreso, Integer> implements 
         }
         return ingresos;
     }
-    
-    private static final String BuscarIngresoPorNombre = "SELECT c FROM Ingreso c WHERE c.nombre = :nombre";
 }
