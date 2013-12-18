@@ -13,12 +13,9 @@ import java.util.List;
 
 /**
  *
- * @author Yuceli
+ * @author 
  */
 public interface ProveedorDAO extends GenericDAO<Proveedor, Integer> {
-    public Proveedor buscarPorNombre(String nombre);
-    
-    public Proveedor buscarProveedorPorNombre(String nombre);
  
     public List<Proveedor> cargarTodosLosProveedores();
  

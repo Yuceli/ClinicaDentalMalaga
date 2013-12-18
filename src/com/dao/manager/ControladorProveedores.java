@@ -23,7 +23,7 @@ public class ControladorProveedores {
         proveedorDAO = new ProveedorDAOImpl();
     }
 
-    public List<Proveedor> cargarProveedores() {
+    public List<Proveedor> cargarTodosLosProveedores() {
         List<Proveedor> proveedores = new ArrayList<Proveedor>();
         proveedores = this.proveedorDAO.cargarTodosLosProveedores();
         return proveedores;
@@ -48,7 +48,9 @@ public class ControladorProveedores {
 
     public void añadirProveedor(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
         String nombre = txtNombre.getText().trim();
-        nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
+        String primeraLetraMayuscula = nombre.substring(0, 1).toUpperCase();
+        String continuacionPalabra = nombre.substring(1, nombre.length());
+        nombre = primeraLetraMayuscula + continuacionPalabra;
         String direccion = txtDireccion.getText().trim();
         String telefono = txtTelefono.getText().trim();
         String rfc = txtRFC.getText().trim().toUpperCase();
