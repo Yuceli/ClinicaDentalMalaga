@@ -5,7 +5,7 @@
 package com.vistas;
 
 import javax.swing.JOptionPane;
-import com.helpers.ControladorEgresos;
+import com.clinica.manager.ControladorEgresos;
 import com.helpers.HelperEgresos;
 
 /**
@@ -17,6 +17,7 @@ public class VistaEgresos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.control = new ControladorEgresos();
+        this.helperEgresos = new HelperEgresos();
         control.cargarTabla(tablaEgresos);
 //        this.actualizar.setVisible(false);
 
@@ -368,7 +369,8 @@ public void abrirVentana() {
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
         control.añadirEgreso(conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
         control.cargarTabla(tablaEgresos);
-        limpiarCampos();
+        helperEgresos.limpiarCampos(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
+
     }//GEN-LAST:event_añadirActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
@@ -399,15 +401,6 @@ public void abrirVentana() {
         }
     }//GEN-LAST:event_buscarActionPerformed
 
-    public void limpiarCampos() {
-        idField.setText("");
-        conceptoField.setText("");
-        proveedorField.setText("");
-        tipoEgresoField.setText("");
-        montoField.setText("");
-        fechaCompra.setDate(null);
-
-    }
     private void tablaEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEgresosMouseClicked
         control.editarEgresos(tablaEgresos, tablaEgresos.getSelectedRow(), idField, conceptoField, tipoEgresoField, proveedorField, montoField);
         this.actualizar.setVisible(true);
@@ -449,7 +442,6 @@ public void abrirVentana() {
 
     private ControladorEgresos control;
     private HelperEgresos helperEgresos;
-//    private int filaSeleccionada = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizar;

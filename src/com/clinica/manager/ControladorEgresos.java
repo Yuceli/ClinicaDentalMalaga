@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.helpers;
+package com.clinica.manager;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -144,7 +144,8 @@ public class ControladorEgresos {
 
         return egreso;
     }
-
+    
+   
     private EgresoMgr egresos;
     private VistaEgresos vistaEgresos;
     Vector nombresColumnas;
