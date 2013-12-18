@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.clinica.manager;
+package com.clinica.controlador;
 
 import com.clinica.modelo.Proveedor;
 import com.dao.implementaciones.ProveedorDAOImpl;

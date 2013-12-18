@@ -5,7 +5,7 @@
 package com.vistas;
 
 import javax.swing.JOptionPane;
-import com.clinica.manager.ControladorEgresos;
+import com.clinica.controlador.ControladorEgresos;
 import com.helpers.HelperEgresos;
 
 /**
