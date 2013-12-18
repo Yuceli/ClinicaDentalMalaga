@@ -1,26 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.dao.manager;
 
 import java.util.Date;
 import java.util.List;
 import javax.swing.JTable;
 import com.clinica.modelo.Ingreso;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextField;
 
-/**
- *
- * @author Yuceli
- */
 public interface IngresoMgr {
 
-    public void guardarIngresoNuevo(Ingreso ingreso);
+    public void guardarIngresoNuevo(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMontoIngreso, JDateChooser dcFecha);
 
-    public void borrarIngreso(Ingreso ingreso);
+    public void borrarIngreso(JTable tablaIngresos);
 
-    public void actualizarIngreso(Ingreso ingreso);
+    public void actualizarIngreso(JTextField txtID, JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMontoIngreso, JDateChooser dcFecha);
 
     public double calcularIngresoDiario(Date dia);
 

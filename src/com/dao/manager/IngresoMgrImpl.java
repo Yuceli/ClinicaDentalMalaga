@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package com.dao.manager;
 
@@ -18,16 +13,19 @@ import com.dao.implementaciones.IngresoDAOImpl;
 import com.clinica.modelo.Ingreso;
 import com.dao.interfaces.IngresoDAO;
 import com.persistence.hibernate.HibernateUtil;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JTextField;
 import org.hibernate.HibernateException;
 
-/**
- *
- * @author Yuceli
- */
+
 public class IngresoMgrImpl implements IngresoMgr {
-    private IngresoDAO ingresoDAO = new IngresoDAOImpl();
     
-        public void guardarIngresoNuevo(Ingreso ingreso) {
+    public void guardarIngresoNuevo(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMontoIngreso, JDateChooser dcFecha) {
+        String concepto = txtConcepto.getText().trim();
+        String tipoDeIngreso = txtTipoIngreso.getText().trim();
+        Double monto = Double.parseDouble(txtMontoIngreso.getText().trim());
+        Date fechaDeIngreso = dcFecha.getDate();
+        Ingreso ingreso = new Ingreso(concepto, tipoDeIngreso, monto, fechaDeIngreso);
         try {
             HibernateUtil.beginTransaction();
             ingresoDAO.nuevo(ingreso);
@@ -39,19 +37,25 @@ public class IngresoMgrImpl implements IngresoMgr {
     }
     
    
-    public void borrarIngreso(Ingreso ingreso) {
-        try {
-            HibernateUtil.beginTransaction();
-            ingresoDAO.borrar(ingreso);
-            HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            HibernateUtil.rollbackTransaction();
-        }
+    public void borrarIngreso(JTable tablaIngresos) {
+        int columnaID =0;
+        int filaSeleccionada = tablaIngresos.getSelectedRow();
+        Object id = (Object) tablaIngresos.getValueAt(filaSeleccionada, columnaID);
+        String ID = String.valueOf(id);
+        int numID = Integer.parseInt(ID);
+        Ingreso ingreso = ingresoDAO.buscarIngresoPorID(numID);
+        this.ingresoDAO.borrar(ingreso);
     }
     
     
-    public void actualizarIngreso(Ingreso ingreso) {
+    public void actualizarIngreso(JTextField txtID, JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMontoIngreso, JDateChooser dcFecha) {
+        String concepto = txtConcepto.getText().trim();
+        String tipoDeIngreso = txtTipoIngreso.getText().trim();
+        Double monto = Double.parseDouble(txtMontoIngreso.getText().trim());
+        Date fechaDeIngreso = dcFecha.getDate();
+        Ingreso ingreso = new Ingreso(concepto, tipoDeIngreso, monto, fechaDeIngreso);
+        int id = Integer.valueOf(txtID.getText());
+        ingreso.setId(id);
         try {
             HibernateUtil.beginTransaction();
             ingresoDAO.actualizar(ingreso);
@@ -148,4 +152,10 @@ public class IngresoMgrImpl implements IngresoMgr {
         }
     }
     
+    private IngresoDAOImpl ingresoDAO;
+    private static final int columnaID = 0;
+    private static final int columnaConcepto = 1;
+    private static final int columnaTipoIngreso = 2;
+    private static final int columnaMonto = 3;
+    private static final int columnaFechaVenta = 4;
 }
