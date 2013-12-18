@@ -107,15 +107,7 @@ public class HelperIngresos {
     
     public void buscarIngreso(JRadioButton opcionID, JRadioButton opcionNombre, JTextField txtBusqueda, JTable tablaIngresos) {
         RowFilter<TableModel, Object> filtradorFilas = null;
-        int columnaBuscar = 2;
-
-        if (opcionID.isSelected()) {
-            columnaBuscar = 0;
-        } else if (opcionNombre.isSelected()) {
-            columnaBuscar = 1;
-        } else {
-            columnaBuscar = 2;
-        }
+        int columnaBuscar = buscarColumnaAUsar(opcionID, opcionNombre);
 
         try {
             String textoABuscar = txtBusqueda.getText();
@@ -165,4 +157,14 @@ public class HelperIngresos {
     private static final int columnaTipoIngreso = 2;
     private static final int columnaMonto = 3;
     private static final int columnaFechaVenta = 4;
+    
+    private int buscarColumnaAUsar(JRadioButton opcionID, JRadioButton opcionNombre){
+        if (opcionID.isSelected()) {
+            return 0;
+        } else if (opcionNombre.isSelected()) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
 }
