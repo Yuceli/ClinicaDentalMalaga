@@ -1,28 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.dao.interfaces;
-
-import com.dao.interfaces.GenericDAO;
-import java.util.Date;
-import com.clinica.modelo.Ingreso;
-
 /**
  *
- * @author Yuceli
+ * @author Arian Castillo
  */
+import com.clinica.modelo.Ingreso;
+import java.util.List;
+
 public interface IngresoDAO extends GenericDAO<Ingreso, Integer> {
 
+    public void guardarIngresoNuevo(Ingreso ingreso);
+    public void borrarIngreso(Ingreso ingreso);
+    public void actualizarIngreso(Ingreso ingreso);
+    
+    public Ingreso buscarIngresoPorID(Integer id);
+    public Ingreso buscarIngresoPorNombre(String nombre);
     public Ingreso buscarPorNombre(String nombre);
-
-    public double obtenerIngresoDiario(Date dia);
-
-    public double obtenerIngresoSemanal();
-
-    public double obtenerIngresoMensual();
-
-    public double obtenerIngresoAnual();
-
+ 
+    public List<Ingreso> cargarTodosLosIngresos();
 }

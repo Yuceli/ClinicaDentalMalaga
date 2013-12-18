@@ -10,6 +10,10 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="cc" red="33" type="rgb"/>
+    </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -30,19 +34,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Component id="jTabla" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Component id="datos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="opciones" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="opTabla" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jTabla" alignment="1" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,7 +71,7 @@
     <Container class="javax.swing.JPanel" name="datos">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="ff" green="cc" red="33" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -143,7 +148,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnAñadir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAñadir" linkSize="4" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="btnActualizar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -173,6 +178,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnA&#xf1;adir">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
           </Properties>
           <Events>
@@ -181,6 +189,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnActualizar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Actualizar datos"/>
           </Properties>
           <Events>
@@ -220,7 +231,7 @@
     <Container class="javax.swing.JPanel" name="jTabla">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="ff" green="cc" red="33" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -242,7 +253,7 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jScrollPane1" pref="223" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="213" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -312,7 +323,7 @@
     <Container class="javax.swing.JPanel" name="opciones">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="ff" green="cc" red="33" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -335,8 +346,8 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="rbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="rbID" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="opcionID" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -353,9 +364,9 @@
                       <Component id="txtBusqueda" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="rbID" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionID" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="rbNombre" min="-2" max="-2" attributes="0"/>
+                  <Component id="opcionNombre" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -369,17 +380,22 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBusqueda">
         </Component>
-        <Component class="javax.swing.JRadioButton" name="rbID">
+        <Component class="javax.swing.JRadioButton" name="opcionID">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="Busqueda"/>
             </Property>
-            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="rbNombre">
+        <Component class="javax.swing.JRadioButton" name="opcionNombre">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="Busqueda"/>
             </Property>
@@ -391,7 +407,7 @@
     <Container class="javax.swing.JPanel" name="opTabla">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="ff" green="cc" red="33" type="rgb"/>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -404,25 +420,26 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnEditar" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnBorrar" min="-2" pref="105" max="-2" attributes="0"/>
-                      <Component id="btnRegresar" min="-2" pref="105" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnEditar" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="btnBorrar" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="btnRegresar" alignment="1" min="-2" pref="105" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="btnBorrar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="btnRegresar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditar" min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnBorrar" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btnRegresar" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -430,6 +447,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnEditar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Editar Registro"/>
           </Properties>
           <Events>
@@ -438,6 +458,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBorrar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Borrar Registro"/>
           </Properties>
           <Events>
@@ -446,6 +469,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnRegresar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
           <Events>

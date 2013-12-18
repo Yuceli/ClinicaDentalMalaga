@@ -1,5 +1,8 @@
 package com.clinica.modelo;
-
+/**
+ *
+ * @author Arian Castillo
+ */
 import java.util.Date;
 
 public class Ingreso  implements java.io.Serializable {

@@ -28,6 +28,8 @@ public class HelperProveedores {
     static int datoDireccion = 2;
     static int datoTelefono = 3;
     static int datoRFC = 4;
+    static int busquedaID = 0;
+    static int busquedaNombre = 1;
 
     public HelperProveedores() {
     }
@@ -117,24 +119,6 @@ public class HelperProveedores {
         return arregloProveedor;
     }
 
-    private void colocarDatosEnArreglo(Object id, String nombre, String direccion, String telefono, String rfc) {
-        arregloProveedor.add(id);
-        arregloProveedor.add(nombre);
-        arregloProveedor.add(direccion);
-        arregloProveedor.add(telefono);
-        arregloProveedor.add(rfc);
-    }
-
-    /*
-     * private void obtenerDatosDeArreglo(){ ArrayList arregloDatosProveedor =
-     * (ArrayList) arregloProveedor.clone(); Object id =
-     * arregloDatosProveedor.get(datoID); String nombre = (String)
-     * arregloDatosProveedor.get(datoNombre); String direccion = (String)
-     * arregloDatosProveedor.get(datoDireccion); String telefono = (String)
-     * arregloDatosProveedor.get(datoTelefono); String rfc = (String)
-     * arregloDatosProveedor.get(datoRFC);
-    }
-     */
     public void ponerDatosSeleccionados(JTextField txtID, JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
         ArrayList arregloDatosProveedor = (ArrayList) arregloProveedor.clone();
         Object id = arregloDatosProveedor.get(datoID);
@@ -142,7 +126,6 @@ public class HelperProveedores {
         String direccion = (String) arregloDatosProveedor.get(datoDireccion);
         String telefono = (String) arregloDatosProveedor.get(datoTelefono);
         String rfc = (String) arregloDatosProveedor.get(datoRFC);
-        //obtenerDatosDeArreglo();
         txtNombre.setText(nombre);
         txtDireccion.setText(direccion);
         txtTelefono.setText(telefono);
@@ -155,9 +138,9 @@ public class HelperProveedores {
         int columnaBuscar = 2;
 
         if (opcionID.isSelected()) {
-            columnaBuscar = 0;
+            columnaBuscar = busquedaID;
         } else if (opcionNombre.isSelected()) {
-            columnaBuscar = 1;
+            columnaBuscar = busquedaNombre;
         } else {
             columnaBuscar = 2;
         }
@@ -168,7 +151,10 @@ public class HelperProveedores {
                 filtradorFilas = RowFilter.regexFilter(textoABuscar, columnaBuscar);
             } else {
                 String textoAEncontrar = txtBusqueda.getText().trim();
-                textoAEncontrar = textoAEncontrar.substring(0, 1).toUpperCase() + textoAEncontrar.substring(1, textoAEncontrar.length());
+                int longitudTextoAEncontrar = textoAEncontrar.length();
+                String primeraLetraMayuscula = textoAEncontrar.substring(0, 1).toUpperCase();
+                String continuacionPalabra = textoAEncontrar.substring(1, longitudTextoAEncontrar);
+                textoAEncontrar = primeraLetraMayuscula + continuacionPalabra;
                 filtradorFilas = RowFilter.regexFilter(textoAEncontrar, columnaBuscar);
             }
         } catch (java.util.regex.PatternSyntaxException e) {
@@ -180,14 +166,14 @@ public class HelperProveedores {
         sorter.setRowFilter(filtradorFilas);
 
     }
-    private ControladorProveedores control = new ControladorProveedores();
+
 
     public void cargarTablaProveedores(JTable tablaProveedores) {
         try {
             final DefaultTableModel modelosTabla = (DefaultTableModel) tablaProveedores.getModel();
             modelosTabla.setRowCount(0);
-            List proveedores = control.cargarProveedores();
-            Object datosProveedor[] = new Object[5];//ARRAY DE 4
+            List proveedores = control.cargarTodosLosProveedores();
+            Object datosProveedor[] = new Object[5];
 
             Iterator<Proveedor> iterador = proveedores.iterator();
             while (iterador.hasNext()) {
@@ -204,4 +190,14 @@ public class HelperProveedores {
             JOptionPane.showMessageDialog(null, "Error al cargar la tabla", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+        private void colocarDatosEnArreglo(Object id, String nombre, String direccion, String telefono, String rfc) {
+        arregloProveedor.add(id);
+        arregloProveedor.add(nombre);
+        arregloProveedor.add(direccion);
+        arregloProveedor.add(telefono);
+        arregloProveedor.add(rfc);
+    }
+        
+          private ControladorProveedores control = new ControladorProveedores();
 }

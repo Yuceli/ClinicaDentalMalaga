@@ -20,29 +20,6 @@ import org.hibernate.Query;
  */
 public class ProveedorDAOImpl extends GenericDAOImpl<Proveedor, Integer> implements ProveedorDAO {
 
-    public Proveedor buscarPorNombre(String nombre) {
-        Proveedor proveedor = null;
-        String sql = "SELECT c FROM Cliente c WHERE c.nombre = :nombre";
-        Query query = HibernateUtil.getSession().createQuery(sql).setParameter("nombre", nombre);
-        proveedor = buscarUno(query);
-        return proveedor;
-    }
-
-    public Proveedor buscarProveedorPorNombre(String nombre) {
-        Proveedor proveedor = null;
-        try {
-            HibernateUtil.beginTransaction();
-            proveedor = buscarPorNombre(nombre);
-            HibernateUtil.commitTransaction();
-        } catch (NonUniqueResultException ex) {
-            System.out.println("Handle your error here");
-            System.out.println("Query returned more than one results.");
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-        }
-        return proveedor;
-    }
-
     public List<Proveedor> cargarTodosLosProveedores() {
         List<Proveedor> proveedores = new ArrayList<Proveedor>();
         try {

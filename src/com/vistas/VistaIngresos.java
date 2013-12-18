@@ -1,12 +1,12 @@
 
 package com.vistas;
-
-import com.clinica.modelo.Ingreso;
+/**
+ *
+ * @author Arian Castillo
+ */
+import com.dao.manager.ControladorIngresos;
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
-import javax.swing.table.DefaultTableModel;
-import com.dao.manager.IngresoMgr;
-import com.dao.manager.IngresoMgrImpl;
 import com.helpers.HelperIngresos;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -16,27 +16,30 @@ import javax.swing.table.TableRowSorter;
 public class VistaIngresos extends javax.swing.JFrame {
 
     public VistaIngresos(VentanaPrincipal ventanaIngresos) {
-        initComponents();
-        setLocationRelativeTo(null);
         this.ventanaIngresos = ventanaIngresos;
+        initComponents();
+        this.control = new ControladorIngresos();
         this.helper = new HelperIngresos();
-        helper.recargarTablaIngresos(tablaIngresos);
-        helper.bloquearBotones(btnBorrar, btnEditar);
-        this.btnActualizar.setVisible(false);
-        
+        helper.cargarTablaIngresos(tablaIngresos);
+        helper.bloquearBotones(btnActualizar, btnBorrar, btnEditar);
+        btnActualizar.setVisible(true);
+
         txtBusqueda.getDocument().addDocumentListener(
                 new DocumentListener() {
+
                     @Override
                     public void changedUpdate(DocumentEvent e) {
-                        helper.buscarIngreso(rbID, rbNombre, txtBusqueda, tablaIngresos);
+                        helper.buscarIngreso(opcionID, opcionNombre, txtBusqueda, tablaIngresos);
                     }
+
                     @Override
                     public void insertUpdate(DocumentEvent e) {
-                        helper.buscarIngreso(rbID, rbNombre, txtBusqueda, tablaIngresos);
+                        helper.buscarIngreso(opcionID, opcionNombre, txtBusqueda, tablaIngresos);
                     }
+
                     @Override
                     public void removeUpdate(DocumentEvent e) {
-                        helper.buscarIngreso(rbID, rbNombre, txtBusqueda, tablaIngresos);
+                        helper.buscarIngreso(opcionID, opcionNombre, txtBusqueda, tablaIngresos);
                     }
                 });
         TableRowSorter sorter = new TableRowSorter<TableModel>(tablaIngresos.getModel());
@@ -76,22 +79,25 @@ public class VistaIngresos extends javax.swing.JFrame {
         opciones = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtBusqueda = new javax.swing.JTextField();
-        rbID = new javax.swing.JRadioButton();
-        rbNombre = new javax.swing.JRadioButton();
+        opcionID = new javax.swing.JRadioButton();
+        opcionNombre = new javax.swing.JRadioButton();
         opTabla = new javax.swing.JPanel();
         btnEditar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 204, 255));
+        setResizable(false);
 
-        datos.setBackground(new java.awt.Color(153, 153, 153));
+        datos.setBackground(new java.awt.Color(51, 204, 255));
         datos.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
 
         jLabel2.setText("Concepto : ");
 
         jLabel3.setText("Tipo de ingreso :");
 
+        btnAñadir.setBackground(new java.awt.Color(51, 204, 255));
         btnAñadir.setText("Añadir");
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +105,7 @@ public class VistaIngresos extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setBackground(new java.awt.Color(51, 204, 255));
         btnActualizar.setText("Actualizar datos");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,7 +186,7 @@ public class VistaIngresos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAñadir)
+                        .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnActualizar))
                     .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
@@ -189,7 +196,7 @@ public class VistaIngresos extends javax.swing.JFrame {
 
         datosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnActualizar, btnAñadir});
 
-        jTabla.setBackground(new java.awt.Color(153, 153, 153));
+        jTabla.setBackground(new java.awt.Color(51, 204, 255));
         jTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabla"));
 
         tablaIngresos.setModel(new javax.swing.table.DefaultTableModel(
@@ -227,21 +234,22 @@ public class VistaIngresos extends javax.swing.JFrame {
         jTablaLayout.setVerticalGroup(
             jTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jTablaLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        opciones.setBackground(new java.awt.Color(153, 153, 153));
+        opciones.setBackground(new java.awt.Color(51, 204, 255));
         opciones.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Busqueda"));
 
         jLabel5.setText("Buscar por: ");
 
-        Busqueda.add(rbID);
-        rbID.setSelected(true);
-        rbID.setText("ID");
+        opcionID.setBackground(new java.awt.Color(51, 204, 255));
+        Busqueda.add(opcionID);
+        opcionID.setText("ID");
 
-        Busqueda.add(rbNombre);
-        rbNombre.setText("Nombre");
+        opcionNombre.setBackground(new java.awt.Color(51, 204, 255));
+        Busqueda.add(opcionNombre);
+        opcionNombre.setText("Nombre");
 
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
@@ -257,8 +265,8 @@ public class VistaIngresos extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(opcionesLayout.createSequentialGroup()
                         .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rbNombre)
-                            .addComponent(rbID))
+                            .addComponent(opcionNombre)
+                            .addComponent(opcionID))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         opcionesLayout.setVerticalGroup(
@@ -269,15 +277,16 @@ public class VistaIngresos extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbID)
+                .addComponent(opcionID)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbNombre)
+                .addComponent(opcionNombre)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        opTabla.setBackground(new java.awt.Color(153, 153, 153));
+        opTabla.setBackground(new java.awt.Color(51, 204, 255));
         opTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Tabla"));
 
+        btnEditar.setBackground(new java.awt.Color(51, 204, 255));
         btnEditar.setText("Editar Registro");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,6 +294,7 @@ public class VistaIngresos extends javax.swing.JFrame {
             }
         });
 
+        btnBorrar.setBackground(new java.awt.Color(51, 204, 255));
         btnBorrar.setText("Borrar Registro");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +302,7 @@ public class VistaIngresos extends javax.swing.JFrame {
             }
         });
 
+        btnRegresar.setBackground(new java.awt.Color(51, 204, 255));
         btnRegresar.setText("Regresar");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -304,22 +315,23 @@ public class VistaIngresos extends javax.swing.JFrame {
         opTablaLayout.setHorizontalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opTablaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         opTablaLayout.setVerticalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opTablaLayout.createSequentialGroup()
+            .addGroup(opTablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEditar)
-                .addGap(27, 27, 27)
-                .addComponent(btnBorrar)
-                .addGap(36, 36, 36)
-                .addComponent(btnRegresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -329,14 +341,15 @@ public class VistaIngresos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(opTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(11, Short.MAX_VALUE))
-                    .addComponent(jTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,58 +368,77 @@ public class VistaIngresos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if (this.tablaIngresos.getSelectedRowCount() != 1) {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila de la tabla");
-        } else {
-            int filaSeleccionada = tablaIngresos.getSelectedRow();
-            helper.ponerDatosSeleccionados(tablaIngresos, filaSeleccionada, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
-            this.btnAñadir.setVisible(false);
-            this.btnActualizar.setVisible(true);
+        try{
+        helper.desbloquearBotones(btnActualizar, btnBorrar);
+        helper.obtenerDatosFilaSeleccionada(tablaIngresos);
+        helper.ponerDatosSeleccionados(txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        if (this.tablaIngresos.getSelectedRowCount() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila de la tabla");
-            
-        } else {
-            Ingreso ingreso = helper.obtenerIngreso(tablaIngresos, tablaIngresos.getSelectedRow());
-            ingresoMgr.borrarIngreso(ingreso);
-            helper.recargarTablaIngresos(tablaIngresos);
+        try {
+            int seleccion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea borrar el registro?", "Borrar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (JOptionPane.YES_OPTION == seleccion) {
+                control.borrarIngreso(tablaIngresos);
+                helper.cargarTablaIngresos(tablaIngresos);
+                helper.limpiarCamposTexto(txtBusqueda, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro eliminado",JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                helper.limpiarCamposTexto(txtBusqueda, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al borrar el registro", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        ventanaIngresos.setVisible(true);
-        this.dispose();
+        try{
+            ventanaIngresos.setVisible(true);
+            this.dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al salir", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        int id = Integer.valueOf(txtID.getText());
-        Ingreso ingreso = helper.obtenerIngreso(txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
-        ingreso.setId(id);
-        ingresoMgr.actualizarIngreso(ingreso);
-        helper.recargarTablaIngresos(tablaIngresos);
-        this.btnAñadir.setVisible(true);
-        this.btnActualizar.setVisible(false);
-        helper.limpiarCampos(txtBusqueda, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+        try {
+            if (helper.camposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)) {
+                JOptionPane.showMessageDialog(null, "Llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                control.actualizarIngreso(txtID, txtConcepto, txtTipoIngreso, txtTipoIngreso, dcFecha);
+                helper.cargarTablaIngresos(tablaIngresos);
+                helper.limpiarCamposTexto(txtBusqueda, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+                JOptionPane.showMessageDialog(null, "Registro modificado correctamente", "Registro modificado",JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al modificar los datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-        if(helper.camposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)){
-            JOptionPane.showMessageDialog(null, "Llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            Ingreso ingreso = helper.obtenerIngreso(txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
-            ingresoMgr.guardarIngresoNuevo(ingreso);
-            helper.recargarTablaIngresos(tablaIngresos);
-            helper.limpiarCampos(txtBusqueda, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+        try {
+            if (helper.camposVacios(txtConcepto, txtTipoIngreso, txtMonto, dcFecha)) {
+                JOptionPane.showMessageDialog(null, "Llene todos los campos", "Campos incompletos", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                control.añadirIngreso(txtConcepto, txtTipoIngreso, txtTipoIngreso, dcFecha);
+                helper.cargarTablaIngresos(tablaIngresos);
+                helper.limpiarCamposTexto(txtBusqueda, txtID, txtConcepto, txtTipoIngreso, txtMonto, dcFecha);
+                JOptionPane.showMessageDialog(null, "Registro ingresado correctamente", "Registro ingresado",JOptionPane.INFORMATION_MESSAGE);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar los datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void tablaIngresosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaIngresosKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnEditar.setEnabled(true);
-            btnBorrar.setEnabled(true);
+            evt.consume();
         }
     }//GEN-LAST:event_tablaIngresosKeyPressed
 
@@ -420,12 +452,10 @@ public class VistaIngresos extends javax.swing.JFrame {
 
     private void tablaIngresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaIngresosMouseClicked
             btnEditar.setEnabled(true);
-            btnBorrar.setEnabled(true);
     }//GEN-LAST:event_tablaIngresosMouseClicked
     
-    private DefaultTableModel dtm;
     private final HelperIngresos helper;
-    private final IngresoMgr ingresoMgr = new IngresoMgrImpl();
+    private final ControladorIngresos control;
     private final VentanaPrincipal ventanaIngresos;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.ButtonGroup Busqueda;
@@ -445,9 +475,9 @@ public class VistaIngresos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jTabla;
     private javax.swing.JPanel opTabla;
+    private javax.swing.JRadioButton opcionID;
+    private javax.swing.JRadioButton opcionNombre;
     private javax.swing.JPanel opciones;
-    private javax.swing.JRadioButton rbID;
-    private javax.swing.JRadioButton rbNombre;
     private javax.swing.JTable tablaIngresos;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtConcepto;

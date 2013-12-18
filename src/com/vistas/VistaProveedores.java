@@ -446,9 +446,6 @@ public class VistaProveedores extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnModificar.setEnabled(true);
-            //helper.desbloquearBotones(btnGuardar, btnBorrar, btnModificar);
-            //helper.obtenerDatosFilaSeleccionada(tablaProveedores);
-           // helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
             evt.consume();
         }
     }//GEN-LAST:event_tablaProveedoresKeyPressed
@@ -456,9 +453,6 @@ public class VistaProveedores extends javax.swing.JFrame {
     private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
         // TODO add your handling code here:
         btnModificar.setEnabled(true);
-        //helper.desbloquearBotones(btnGuardar, btnBorrar, btnModificar);
-        //helper.obtenerDatosFilaSeleccionada(tablaProveedores);
-        //helper.ponerDatosSeleccionados(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
     }//GEN-LAST:event_tablaProveedoresMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
