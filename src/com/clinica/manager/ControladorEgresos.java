@@ -10,8 +10,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import com.clinica.modelo.Egreso;
-import com.dao.manager.EgresoMgr;
-import com.dao.manager.EgresoMgrImpl;
+import com.dao.implementaciones.EgresoDAOImpl;
 import com.toedter.calendar.JDateChooser;
 import com.vistas.VistaEgresos;
 import java.util.Date;
@@ -25,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 public class ControladorEgresos {
 
     public ControladorEgresos() {
-        egresos = new EgresoMgrImpl();
+        egresos = new EgresoDAOImpl();
         nombresColumnas = new Vector();
         nombresColumnas.add("ID");
         nombresColumnas.add("Concepto");
@@ -145,7 +144,7 @@ public class ControladorEgresos {
         return egreso;
     }
 
-    private EgresoMgr egresos;
+    private EgresoDAOImpl egresos;
     private VistaEgresos vistaEgresos;
     Vector nombresColumnas;
 
