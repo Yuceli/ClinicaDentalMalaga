@@ -21,9 +21,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class VistaProveedores extends javax.swing.JFrame {
 
-    private HelperProveedores helper;
-    private ControladorProveedores control;
-
     public VistaProveedores() {
         initComponents();
         this.control = new ControladorProveedores();
@@ -78,22 +75,22 @@ public class VistaProveedores extends javax.swing.JFrame {
         opcionID = new javax.swing.JRadioButton();
         opcionNombre = new javax.swing.JRadioButton();
         opTabla = new javax.swing.JPanel();
-        btnBorrar = new javax.swing.JButton();
-        salir = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         datos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        btnAñadir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         labelRFC = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        btnAñadir = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -193,20 +190,6 @@ public class VistaProveedores extends javax.swing.JFrame {
 
         opTabla.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones Tabla"));
 
-        btnBorrar.setText("Borrar Registro");
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
-            }
-        });
-
-        salir.setText("Salir");
-        salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
-            }
-        });
-
         btnLimpiar.setText("Limpiar Campos");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,6 +204,20 @@ public class VistaProveedores extends javax.swing.JFrame {
             }
         });
 
+        btnBorrar.setText("Borrar Registro");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout opTablaLayout = new javax.swing.GroupLayout(opTabla);
         opTabla.setLayout(opTablaLayout);
         opTablaLayout.setHorizontalGroup(
@@ -228,26 +225,24 @@ public class VistaProveedores extends javax.swing.JFrame {
             .addGroup(opTablaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(opTablaLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnBorrar)
+                    .addComponent(btnSalir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         opTablaLayout.setVerticalGroup(
             opTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opTablaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(opTablaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnLimpiar)
+                .addGap(18, 18, 18)
+                .addComponent(btnModificar)
+                .addGap(18, 18, 18)
+                .addComponent(btnBorrar)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalir)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         datos.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos"));
@@ -255,13 +250,6 @@ public class VistaProveedores extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
 
         jLabel3.setText("Direccion");
-
-        btnAñadir.setText("Añadir");
-        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAñadirActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Telefono");
 
@@ -271,7 +259,14 @@ public class VistaProveedores extends javax.swing.JFrame {
 
         txtID.setEditable(false);
 
-        btnGuardar.setText("Guardar modificación");
+        btnAñadir.setText("Añadir Registro");
+        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirActionPerformed(evt);
+            }
+        });
+
+        btnGuardar.setText("Guardar modificaciones");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -303,10 +298,10 @@ public class VistaProveedores extends javax.swing.JFrame {
                             .addGroup(datosLayout.createSequentialGroup()
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(68, 68, 68))
+                                .addComponent(btnAñadir)
+                                .addGap(105, 105, 105)
+                                .addComponent(btnGuardar)
+                                .addGap(96, 96, 96))
                             .addComponent(txtRFC)
                             .addComponent(txtTelefono))))
                 .addGap(10, 10, 10))
@@ -331,18 +326,18 @@ public class VistaProveedores extends javax.swing.JFrame {
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelRFC)
                     .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(0, 13, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 10, Short.MAX_VALUE)
                         .addGroup(datosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnAñadir)
+                            .addComponent(btnGuardar))))
                 .addContainerGap())
         );
 
@@ -381,44 +376,21 @@ public class VistaProveedores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        try{
-        helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error al limpiar campos de texto", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+    private void tablaProveedoresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaProveedoresKeyPressed
         // TODO add your handling code here:
-        try {
-            int seleccion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea borrar el registro?", "Borrar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (JOptionPane.YES_OPTION == seleccion) {
-                control.borrarProveedor(tablaProveedores);
-                helper.cargarTablaProveedores(tablaProveedores);
-                helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
-                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro eliminado",JOptionPane.INFORMATION_MESSAGE);
-
-            } else {
-                helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al borrar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnModificar.setEnabled(true);
+            evt.consume();
         }
+    }//GEN-LAST:event_tablaProveedoresKeyPressed
 
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
+    private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
         // TODO add your handling code here:
-        try{
-        this.dispose();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error al salir", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_salirActionPerformed
+        btnModificar.setEnabled(true);
+    }//GEN-LAST:event_tablaProveedoresMouseClicked
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-
+        // TODO add your handling code here:
         try {
             if (helper.camposSobrepasados(txtNombre, txtDireccion, txtTelefono)) {
                 JOptionPane.showMessageDialog(null, "Los campos no pueden exceder de 100 caracteres", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -441,19 +413,6 @@ public class VistaProveedores extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al insertar los datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnAñadirActionPerformed
-
-    private void tablaProveedoresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaProveedoresKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btnModificar.setEnabled(true);
-            evt.consume();
-        }
-    }//GEN-LAST:event_tablaProveedoresKeyPressed
-
-    private void tablaProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProveedoresMouseClicked
-        // TODO add your handling code here:
-        btnModificar.setEnabled(true);
-    }//GEN-LAST:event_tablaProveedoresMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -478,6 +437,24 @@ public class VistaProveedores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        try {
+            int seleccion = JOptionPane.showConfirmDialog(null, "¿Seguro que desea borrar el registro?", "Borrar registro", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (JOptionPane.YES_OPTION == seleccion) {
+                control.borrarProveedor(tablaProveedores);
+                helper.cargarTablaProveedores(tablaProveedores);
+                helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+                JOptionPane.showMessageDialog(null, "Registro eliminado correctamente", "Registro eliminado",JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al borrar el registro", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         try{
@@ -489,12 +466,34 @@ public class VistaProveedores extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        try{
+        helper.limpiarCamposTexto(txtID, txtNombre, txtDireccion, txtTelefono, txtRFC);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al limpiar campos de texto", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        try{
+        this.dispose();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al salir", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+        private HelperProveedores helper;
+        private ControladorProveedores control;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAñadir;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JPanel datos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -509,7 +508,6 @@ public class VistaProveedores extends javax.swing.JFrame {
     private javax.swing.JRadioButton opcionID;
     private javax.swing.JRadioButton opcionNombre;
     private javax.swing.JPanel opciones;
-    private javax.swing.JButton salir;
     private javax.swing.JTable tablaProveedores;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtDireccion;

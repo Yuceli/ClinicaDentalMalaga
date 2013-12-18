@@ -19,6 +19,19 @@ import org.hibernate.Query;
  * @author
  */
 public class ProveedorDAOImpl extends GenericDAOImpl<Proveedor, Integer> implements ProveedorDAO {
+    
+    
+    public Proveedor buscarProveedorPorID(Integer id) {
+        Proveedor proveedor = null;
+        try {
+            HibernateUtil.beginTransaction();
+            proveedor = (Proveedor) buscarPorID(Proveedor.class, id);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return proveedor;
+    }
 
     public List<Proveedor> cargarTodosLosProveedores() {
         List<Proveedor> proveedores = new ArrayList<Proveedor>();
@@ -52,18 +65,6 @@ public class ProveedorDAOImpl extends GenericDAOImpl<Proveedor, Integer> impleme
             ex.printStackTrace();
             HibernateUtil.rollbackTransaction();
         }
-    }
-
-    public Proveedor buscarProveedorPorID(Integer id) {
-        Proveedor proveedor = null;
-        try {
-            HibernateUtil.beginTransaction();
-            proveedor = (Proveedor) buscarPorID(Proveedor.class, id);
-            HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-        }
-        return proveedor;
     }
 
     public void borrarProveedor(Proveedor proveedor) {

@@ -16,14 +16,14 @@ import java.util.List;
  * @author 
  */
 public interface ProveedorDAO extends GenericDAO<Proveedor, Integer> {
+    
+    public Proveedor buscarProveedorPorID(Integer id);
  
     public List<Proveedor> cargarTodosLosProveedores();
  
     public void guardarProveedorNuevo(Proveedor proveedor);
     
     public void actualizarProveedor(Proveedor proveedor);
- 
-    public Proveedor buscarProveedorPorID(Integer id);
  
     public void borrarProveedor(Proveedor proveedor);  
     

@@ -5,27 +5,32 @@
 package com.clinica.manager;
 
 import com.clinica.modelo.Proveedor;
-import com.dao.manejador.proveedores.ProveedorMgrImpl;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import com.dao.implementaciones.ProveedorDAOImpl;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
  *
- * @author Eddie
+ * @author 
  */
 public class ControladorProveedores {
 
-    private ProveedorMgrImpl ProveedorMgr;
-
     public ControladorProveedores() {
-        ProveedorMgr = new ProveedorMgrImpl();
+        proveedorDAO = new ProveedorDAOImpl();
+    }
+
+    public List<Proveedor> cargarTodosLosProveedores() {
+        List<Proveedor> proveedores = new ArrayList<Proveedor>();
+        proveedores = this.proveedorDAO.cargarTodosLosProveedores();
+        return proveedores;
     }
 
     public void actualizarProveedor(JTextField txtID, JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
         String id = txtID.getText();
         int numID = Integer.parseInt(id);
-        Proveedor proveedor = ProveedorMgr.buscarProveedorPorID(numID);
+        Proveedor proveedor = proveedorDAO.buscarProveedorPorID(numID);
         //Actualizar registro
         String nombre = txtNombre.getText().trim();
         String direccion = txtDireccion.getText().trim();
@@ -35,33 +40,31 @@ public class ControladorProveedores {
         proveedor.setDireccion(direccion);
         proveedor.setTelefono(telefono);
         proveedor.setRfc(rfc);
-        this.ProveedorMgr.actualizarProveedor(proveedor);
+        this.proveedorDAO.actualizarProveedor(proveedor);
 
     }
 
     public void añadirProveedor(JTextField txtNombre, JTextField txtDireccion, JTextField txtTelefono, JTextField txtRFC) {
         String nombre = txtNombre.getText().trim();
-        nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
+        String primeraLetraMayuscula = nombre.substring(0, 1).toUpperCase();
+        String continuacionPalabra = nombre.substring(1, nombre.length());
+        nombre = primeraLetraMayuscula + continuacionPalabra;
         String direccion = txtDireccion.getText().trim();
         String telefono = txtTelefono.getText().trim();
         String rfc = txtRFC.getText().trim().toUpperCase();
         Proveedor proveedor = new Proveedor(nombre, direccion, telefono, rfc);
-        this.ProveedorMgr.guardarProveedorNuevo(proveedor);
+        this.proveedorDAO.guardarProveedorNuevo(proveedor);
     }
 
-    public void borrarProveedor(JTextField txtID) {
-        String id = txtID.getText();
-        int numID = Integer.parseInt(id);
-        Proveedor proveedor = ProveedorMgr.buscarProveedorPorID(numID);
-        this.ProveedorMgr.borrarProveedor(proveedor);
+    public void borrarProveedor(JTable tablaProveedores) {
+        int columnaID =0;
+        int filaSeleccionada = tablaProveedores.getSelectedRow();
+        Object id = (Object) tablaProveedores.getValueAt(filaSeleccionada, columnaID);
+        String ID = String.valueOf(id);
+        int numID = Integer.parseInt(ID);
+        Proveedor proveedor = proveedorDAO.buscarProveedorPorID(numID);
+        this.proveedorDAO.borrarProveedor(proveedor);
     }
-
-    public Boolean verificarRfcProveedor(JTextField txtRFC) {
-        String rfc = txtRFC.getText().trim().toUpperCase();
-        String automataRfc = "^[A-Z]{3,4}[ \\-]?[0-9]{2}((0{1}[1-9]{1})|(1{1}[0-2]{1}))((0{1}[1-9]{1})|([1-2]{1}[0-9]{1})|(3{1}[0-1]{1}))[ \\-]?[A-Z0-9]{3}";
-        Pattern pattern = Pattern.compile(automataRfc);
-        Matcher matcher = pattern.matcher(rfc);
-        return matcher.matches();
-    }
-
+    
+        private ProveedorDAOImpl proveedorDAO;
 }
