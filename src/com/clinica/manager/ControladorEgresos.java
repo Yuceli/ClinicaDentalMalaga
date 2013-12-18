@@ -140,6 +140,7 @@ public class ControladorEgresos {
         egreso.setTipoEgreso((String) tableModel.getValueAt(row, 2));
         egreso.setProveedor((String) tableModel.getValueAt(row, 3));
         egreso.setMonto(((Double) tableModel.getValueAt(row, 4)));
+        egreso.setFechaDeCompra((Date) tableModel.getValueAt(row, 5));
 
         return egreso;
     }

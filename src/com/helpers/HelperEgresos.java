@@ -15,13 +15,14 @@ import javax.swing.JTextField;
  */
 public class HelperEgresos {
     
-    public void limpiarCampos(JTextField id ,JTextField concepto, JTextField tipoEgreso, JTextField proveedor, JTextField monto, JDateChooser fecha) {
-        concepto.setText("");
-        tipoEgreso.setText("");
-        proveedor.setText("");
-        monto.setText("");
-        id.setText("");
-        fecha.setDate(null);
+    public void limpiarCampos(JTextField idField , JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField, JTextField montoField, JDateChooser fechaCompra) {
+        idField.setText("");
+        conceptoField.setText("");
+        tipoEgresoField.setText("");
+        proveedorField.setText("");
+        montoField.setText("");
+        fechaCompra.setDate(null);
+        
         
     }
     

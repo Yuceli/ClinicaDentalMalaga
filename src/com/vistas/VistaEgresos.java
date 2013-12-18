@@ -18,7 +18,7 @@ public class VistaEgresos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.control = new ControladorEgresos();
         control.cargarTabla(tablaEgresos);
-        this.actualizar.setVisible(false);
+//        this.actualizar.setVisible(false);
 
     }
 
@@ -303,7 +303,9 @@ public class VistaEgresos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ventanaPrincipal.setText("Ventana Principal");
+        regresarVentanaPrincipal.setBackground(new java.awt.Color(0, 153, 153));
+
+        ventanaPrincipal.setText("Regresar");
 
         javax.swing.GroupLayout regresarVentanaPrincipalLayout = new javax.swing.GroupLayout(regresarVentanaPrincipal);
         regresarVentanaPrincipal.setLayout(regresarVentanaPrincipalLayout);
@@ -312,14 +314,14 @@ public class VistaEgresos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, regresarVentanaPrincipalLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ventanaPrincipal)
-                .addGap(24, 24, 24))
+                .addGap(44, 44, 44))
         );
         regresarVentanaPrincipalLayout.setVerticalGroup(
             regresarVentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(regresarVentanaPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, regresarVentanaPrincipalLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(ventanaPrincipal)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -366,21 +368,19 @@ public void abrirVentana() {
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
         control.añadirEgreso(conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
         control.cargarTabla(tablaEgresos);
-        helperEgresos.limpiarCampos(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
+        limpiarCampos();
     }//GEN-LAST:event_añadirActionPerformed
 
     private void borrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarActionPerformed
         control.borrarEgreso(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
-        helperEgresos.limpiarCampos(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
         control.recargarTabla(tablaEgresos);
     }//GEN-LAST:event_borrarActionPerformed
 
     private void actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarActionPerformed
         control.actualizar(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
-        helperEgresos.limpiarCampos(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
         control.recargarTabla(tablaEgresos);
-        this.añadir.setVisible(true);
-        this.actualizar.setVisible(false);
+//        this.añadir.setVisible(true);
+//        this.actualizar.setVisible(false);
     }//GEN-LAST:event_actualizarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
@@ -399,6 +399,15 @@ public void abrirVentana() {
         }
     }//GEN-LAST:event_buscarActionPerformed
 
+    public void limpiarCampos() {
+        idField.setText("");
+        conceptoField.setText("");
+        proveedorField.setText("");
+        tipoEgresoField.setText("");
+        montoField.setText("");
+        fechaCompra.setDate(null);
+
+    }
     private void tablaEgresosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEgresosMouseClicked
         control.editarEgresos(tablaEgresos, tablaEgresos.getSelectedRow(), idField, conceptoField, tipoEgresoField, proveedorField, montoField);
         this.actualizar.setVisible(true);
@@ -440,7 +449,7 @@ public void abrirVentana() {
 
     private ControladorEgresos control;
     private HelperEgresos helperEgresos;
-    private int filaSeleccionada = 0;
+//    private int filaSeleccionada = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizar;
