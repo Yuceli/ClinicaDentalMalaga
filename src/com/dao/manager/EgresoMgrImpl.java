@@ -10,24 +10,69 @@ import com.persistence.hibernate.HibernateUtil;
 import org.hibernate.HibernateException;
 
 public class EgresoMgrImpl implements EgresoMgr {
-
-    private EgresoDAO egresoDAO = new EgresoDAOImpl();
-
-    public Egreso buscarEgresoPorConcepto(String nombre) {
-        Egreso cliente = null;
+    
+    
+     public void guardarEgresoNuevo(Egreso egreso) {
         try {
             HibernateUtil.beginTransaction();
-            cliente = egresoDAO.buscarPorNombre(nombre);
+            egresoDAO.nuevo(egreso);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            HibernateUtil.rollbackTransaction();
+        }
+    }
+    
+    public void borrarEgreso(Egreso egreso) {
+        try {
+            HibernateUtil.beginTransaction();
+            egresoDAO.borrar(egreso);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            HibernateUtil.rollbackTransaction();
+        }
+    }
+
+    public Egreso buscarEgresoPorConcepto(String concepto) {
+        Egreso egreso = null;
+        try {
+            HibernateUtil.beginTransaction();
+            egreso = egresoDAO.buscarPorConcepto(concepto);
             HibernateUtil.commitTransaction();
         } catch (NonUniqueResultException ex) {
             System.out.println("A ocurrido un error inesperado");
         } catch (HibernateException ex) {
             ex.printStackTrace();
         }
-        return cliente;
+        return egreso;
+    }
+    
+    public Egreso buscarEgresoPorID(Integer id) {
+        Egreso egreso = null;
+        try {
+            HibernateUtil.beginTransaction();
+            egreso = (Egreso) egresoDAO.buscarPorID(Egreso.class, id);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+        }
+        return egreso;
     }
 
-    public List<Egreso> cargarEgresos() {
+   
+    public void actualizarDatosEgreso(Egreso egreso) {
+        try {
+            HibernateUtil.beginTransaction();
+            egresoDAO.actualizar(egreso);
+            HibernateUtil.commitTransaction();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            HibernateUtil.rollbackTransaction();
+        }
+    }
+
+     public List<Egreso> cargarEgresos() {
         List<Egreso> clientes = new ArrayList<Egreso>();
         try {
             HibernateUtil.beginTransaction();
@@ -38,49 +83,6 @@ public class EgresoMgrImpl implements EgresoMgr {
         }
         return clientes;
     }
-
-    public void guardarEgresoNuevo(Egreso cliente) {
-        try {
-            HibernateUtil.beginTransaction();
-            egresoDAO.nuevo(cliente);
-            HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            HibernateUtil.rollbackTransaction();
-        }
-    }
-
-    public void actualizarDatosEgreso(Egreso cliente) {
-        try {
-            HibernateUtil.beginTransaction();
-            egresoDAO.actualizar(cliente);
-            HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            HibernateUtil.rollbackTransaction();
-        }
-    }
-
-    public Egreso buscarEgresoPorID(Integer id) {
-        Egreso cliente = null;
-        try {
-            HibernateUtil.beginTransaction();
-            cliente = (Egreso) egresoDAO.buscarPorID(Egreso.class, id);
-            HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-        }
-        return cliente;
-    }
-
-    public void borrarEgreso(Egreso cliente) {
-        try {
-            HibernateUtil.beginTransaction();
-            egresoDAO.borrar(cliente);
-            HibernateUtil.commitTransaction();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            HibernateUtil.rollbackTransaction();
-        }
-    }
+     
+      private EgresoDAO egresoDAO = new EgresoDAOImpl();
 }

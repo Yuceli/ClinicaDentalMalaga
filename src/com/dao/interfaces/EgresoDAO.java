@@ -7,5 +7,5 @@ import com.clinica.modelo.Egreso;
 
 
 public interface EgresoDAO extends GenericDAO<Egreso, Integer>{
-    public Egreso buscarPorNombre(String nombre);
+    public Egreso buscarPorConcepto(String concepto);
 }

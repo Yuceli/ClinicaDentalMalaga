@@ -36,33 +36,14 @@ public class ControladorEgresos {
 
     }
 
-    private Vector VectorToArrayList(ArrayList<Egreso> array) {
-        Vector vectorTabla = new Vector();
-
-        for (int i = 0; i < array.size(); i++) {
-            Egreso egresos = array.get(i);
-            Vector v = new Vector();
-            v.add(egresos.getId());
-            v.add(egresos.getConcepto());
-            v.add(egresos.getTipoEgreso());
-            v.add(egresos.getProveedor());
-            v.add(egresos.getMonto());
-            v.add(egresos.getFechaDeCompra());
-            vectorTabla.add(v);
-        }
-        return vectorTabla;
-
-    }
-
     public void recargarTabla(JTable tablaEgresos) {
-        this.cargarTabla(tablaEgresos);
+        this.cargarTablaEgresos(tablaEgresos);
     }
 
-    public void cargarTabla(JTable tabla) {
+    public void cargarTablaEgresos(JTable tabla) {
         ArrayList<Egreso> egresoArrayList = (ArrayList<Egreso>) egresos.cargarEgresos();
         Vector egresosArrayList = VectorToArrayList(egresoArrayList);
         DefaultTableModel modeloTabla = new DefaultTableModel(egresosArrayList, nombresColumnas);
-        //Para ordenar las columnas
         TableRowSorter<TableModel> ordenColumnas = new TableRowSorter<TableModel>(modeloTabla);
         tabla.setRowSorter(ordenColumnas);
         tabla.setModel(modeloTabla);
@@ -87,7 +68,7 @@ public class ControladorEgresos {
         tipoEgreso.setText(egreso.getTipoEgreso());
         proveedor.setText(egreso.getProveedor());
         monto.setText(Double.toString(egreso.getMonto()));
-        
+
     }
 
     public void añadirEgreso(JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField, JTextField montoField, JDateChooser fechaField) {
@@ -100,7 +81,7 @@ public class ControladorEgresos {
         this.egresos.guardarEgresoNuevo(egreso);
     }
 
-    public void borrarEgreso(JTextField idField, JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField, JTextField montoField, JDateChooser fechaField ) {
+    public void borrarEgreso(JTextField idField, JTextField conceptoField, JTextField tipoEgresoField, JTextField proveedorField, JTextField montoField, JDateChooser fechaField) {
         String concepto = conceptoField.getText();
         String tipoEgreso = tipoEgresoField.getText();
         String proveedor = proveedorField.getText();
@@ -130,6 +111,25 @@ public class ControladorEgresos {
         proveedor.setText(egreso.getProveedor());
         monto.setText(Double.toString(egreso.getMonto()));
     }
+    
+    
+     private Vector VectorToArrayList(ArrayList<Egreso> array) {
+        Vector vectorTabla = new Vector();
+
+        for (int i = 0; i < array.size(); i++) {
+            Egreso egresos = array.get(i);
+            Vector v = new Vector();
+            v.add(egresos.getId());
+            v.add(egresos.getConcepto());
+            v.add(egresos.getTipoEgreso());
+            v.add(egresos.getProveedor());
+            v.add(egresos.getMonto());
+            v.add(egresos.getFechaDeCompra());
+            vectorTabla.add(v);
+        }
+        return vectorTabla;
+
+    }
 
     private Egreso parseEgreso(JTable tabla, int row) {
         TableModel tableModel = tabla.getModel();
@@ -144,8 +144,7 @@ public class ControladorEgresos {
 
         return egreso;
     }
-    
-   
+
     private EgresoMgr egresos;
     private VistaEgresos vistaEgresos;
     Vector nombresColumnas;

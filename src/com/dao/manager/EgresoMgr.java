@@ -4,16 +4,17 @@ import java.util.List;
 import com.clinica.modelo.Egreso;
 
 public interface EgresoMgr {
+   
+    public void guardarEgresoNuevo(Egreso egreso);
+
+    public void borrarEgreso(Egreso egreso);
 
     public Egreso buscarEgresoPorConcepto(String nombre);
 
-    public List<Egreso> cargarEgresos();
-
-    public void guardarEgresoNuevo(Egreso egreso);
+    public Egreso buscarEgresoPorID(Integer id);
 
     public void actualizarDatosEgreso(Egreso egreso);
 
-    public Egreso buscarEgresoPorID(Integer id);
+    public List<Egreso> cargarEgresos();
 
-    public void borrarEgreso(Egreso egreso);
 }

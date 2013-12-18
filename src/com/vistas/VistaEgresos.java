@@ -18,7 +18,7 @@ public class VistaEgresos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.control = new ControladorEgresos();
         this.helperEgresos = new HelperEgresos();
-        control.cargarTabla(tablaEgresos);
+        control.cargarTablaEgresos(tablaEgresos);
 //        this.actualizar.setVisible(false);
 
     }
@@ -368,7 +368,7 @@ public void abrirVentana() {
 
     private void añadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirActionPerformed
         control.añadirEgreso(conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
-        control.cargarTabla(tablaEgresos);
+        control.cargarTablaEgresos(tablaEgresos);
         helperEgresos.limpiarCampos(idField, conceptoField, tipoEgresoField, proveedorField, montoField, fechaCompra);
 
     }//GEN-LAST:event_añadirActionPerformed

@@ -5,19 +5,9 @@
  */
 package com.helpers;
 
-import com.clinica.modelo.Egreso;
-import com.dao.manager.EgresoMgr;
-import com.dao.manager.EgresoMgrImpl;
+
 import com.toedter.calendar.JDateChooser;
-import com.vistas.VistaEgresos;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Vector;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
