@@ -5,11 +5,6 @@
  */
 package com.vistas;
 
-import java.awt.BorderLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JProgressBar;
-import javax.swing.border.Border;
-
 /**
  *
  * @author Yuceli
@@ -40,7 +35,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BotonIngresos = new javax.swing.JButton();
         LabelClinica = new javax.swing.JLabel();
         LabelBienvenido = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,32 +70,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         LabelBienvenido.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
         LabelBienvenido.setText("Bienvenido");
 
-        jProgressBar1.setStringPainted(true);
-
         javax.swing.GroupLayout PanelClinicaLayout = new javax.swing.GroupLayout(PanelClinica);
         PanelClinica.setLayout(PanelClinicaLayout);
         PanelClinicaLayout.setHorizontalGroup(
             PanelClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelClinicaLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(BotonProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(BotonEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(BotonIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
-            .addGroup(PanelClinicaLayout.createSequentialGroup()
                 .addGap(191, 191, 191)
                 .addComponent(LabelBienvenido)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClinicaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(233, 233, 233))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClinicaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(LabelClinica)
                 .addGap(119, 119, 119))
+            .addGroup(PanelClinicaLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(BotonProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(BotonEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BotonIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68))
         );
 
         PanelClinicaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {BotonEgresos, BotonIngresos, BotonProveedores});
@@ -110,17 +98,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             PanelClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelClinicaLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(LabelBienvenido)
+                .addComponent(LabelBienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(LabelClinica, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(LabelClinica, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addGap(89, 89, 89)
                 .addGroup(PanelClinicaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonEgresos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BotonIngresos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addGap(92, 92, 92))
         );
 
         PanelClinicaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {BotonEgresos, BotonIngresos, BotonProveedores});
@@ -163,7 +149,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void BotonIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresosActionPerformed
         // TODO add your handling code here:
-        VistaIngresos vistaIngresos = new VistaIngresos();
+        VistaIngresos vistaIngresos = new VistaIngresos(this);
         vistaIngresos.mostrarVistaIngresos();
         setVisible(false);
     }//GEN-LAST:event_BotonIngresosActionPerformed
@@ -178,6 +164,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel LabelBienvenido;
     private javax.swing.JLabel LabelClinica;
     private javax.swing.JPanel PanelClinica;
-    private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
 }
