@@ -42,7 +42,6 @@ public class HelperIngresos {
         btnBorrar.setEnabled(false);
         btnEditar.setEnabled(false);
     }
-    
     public void desbloquearBotones(JButton btnActualizar, JButton btnBorrar) {
         btnActualizar.setEnabled(true);
         btnBorrar.setEnabled(true);
@@ -54,7 +53,6 @@ public class HelperIngresos {
         txtMonto.setEnabled(false);
         dcFecha.setEnabled(false);
     }
-    
     public void desbloquearCamposTextoE(JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha) {
         txtConcepto.setEnabled(true);
         txtTipoIngreso.setEnabled(true);
@@ -82,7 +80,6 @@ public class HelperIngresos {
         this.colocarDatosEnArreglo(id, concepto, tipoIngreso, monto, fechaDeVenta);
         return arregloIngreso;
     }
-    
     private void colocarDatosEnArreglo(Object id, String concepto, String tipoIngreso, Double monto, Date fechaDeVenta) {
         arregloIngreso.add(id);
         arregloIngreso.add(concepto);
@@ -90,7 +87,6 @@ public class HelperIngresos {
         arregloIngreso.add(monto);
         arregloIngreso.add(fechaDeVenta);
     }
-    
     public void ponerDatosSeleccionados(JTextField txtID, JTextField txtConcepto, JTextField txtTipoIngreso, JTextField txtMonto, JDateChooser dcFecha) {
         ArrayList arregloDatosIngreso = (ArrayList) arregloIngreso.clone();
         Object id = arregloDatosIngreso.get(columnaID);
